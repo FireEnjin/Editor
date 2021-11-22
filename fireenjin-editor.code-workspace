@@ -1,0 +1,35 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.detectIndentation": true,
+    "editor.formatOnSave": true,
+    "todo-tree.flat": true,
+    "todo-tree.expanded": true,
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#4c9079",
+      "titleBar.activeBackground": "#56a48a",
+      "titleBar.activeForeground": "#222428",
+      "activityBar.foreground": "#222428",
+      "statusBar.background": "#FFFFFF",
+      "statusBar.foreground": "#222428"
+    },
+    "todo-tree.tree.expanded": true,
+    "todo-tree.tree.flat": true,
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/*.code-search": true,
+      "**/.history": true,
+      "**/dist": true
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+  }
+}

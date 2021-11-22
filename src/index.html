@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>FireEnjin: Editor</title>
+
+    <meta
+      name="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="description" content="A local design system testing tool" />
+    <meta name="theme-color" content="#16161d" />
+
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Flood Team Components" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+    <script
+      type="module"
+      src="https://unpkg.com/@madnesslabs/fireenjin-designer@latest/dist/fireenjin-designer/fireenjin-designer.esm.js"
+    ></script>
+    <script type="module" src="/build/editor.esm.js"></script>
+    <script nomodule src="/build/editor.js"></script>
+
+    <link href="/build/editor.css" rel="stylesheet" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/icon/apple-touch-icon.png"
+    />
+    <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    <style>
+      body {
+        display: block;
+        overflow: auto;
+        position: initial;
+      }
+      .organism-wrapper {
+        background: var(--ion-color-base);
+      }
+      .organism-canvas {
+        padding: 20px 80px !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <fireenjin-designer-gallery></fireenjin-designer-gallery>
+    <script src="/presets.js"></script>
+  </body>
+</html>
