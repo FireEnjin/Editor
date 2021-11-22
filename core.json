@@ -1,0 +1,194 @@
+{
+  "timestamp": "2021-11-22T01:08:08",
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "2.10.0",
+    "typescriptVersion": "4.3.5"
+  },
+  "components": [
+    {
+      "filePath": "./src/components/editor/editor.tsx",
+      "encapsulation": "none",
+      "tag": "fireenjin-editor",
+      "readme": "# enjin-editor\n\n\n",
+      "docs": "",
+      "docsTags": [],
+      "usage": {},
+      "props": [
+        {
+          "name": "autofocus",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "autofocus",
+          "reflectToAttr": false,
+          "docs": "Should the editor focus on load",
+          "docsTags": [],
+          "default": "true",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "fileStoragePath",
+          "type": "string",
+          "mutable": false,
+          "attr": "file-storage-path",
+          "reflectToAttr": false,
+          "docs": "The folder to put images uploaded via the editor in",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "partials",
+          "type": "any",
+          "mutable": false,
+          "attr": "partials",
+          "reflectToAttr": false,
+          "docs": "A list of template partials to use or a function to run to get template partials",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "any"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "mutable": false,
+          "attr": "placeholder",
+          "reflectToAttr": false,
+          "docs": "The placholder text to show when the editor is empty",
+          "docsTags": [],
+          "default": "\"Let's Write Something!\"",
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "readOnly",
+          "type": "boolean",
+          "mutable": false,
+          "attr": "read-only",
+          "reflectToAttr": false,
+          "docs": "Is the editor in read only mode",
+          "docsTags": [],
+          "default": "false",
+          "values": [
+            {
+              "type": "boolean"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "tools",
+          "type": "any",
+          "mutable": false,
+          "attr": "tools",
+          "reflectToAttr": false,
+          "docs": "Custom tools you want to pass to Editor.js",
+          "docsTags": [],
+          "default": "{}",
+          "values": [
+            {
+              "type": "any"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "uploadCallback",
+          "type": "(event: any) => Promise<{ success: boolean; file: { url: string; }; }>",
+          "mutable": false,
+          "reflectToAttr": false,
+          "docs": "The callback to be run when a file is uploaded",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "(event: any) => Promise<{ success: boolean; file: { url: string; }; }>"
+            }
+          ],
+          "optional": false,
+          "required": false
+        },
+        {
+          "name": "userId",
+          "type": "string",
+          "mutable": false,
+          "attr": "user-id",
+          "reflectToAttr": false,
+          "docs": "The userId of the author",
+          "docsTags": [],
+          "values": [
+            {
+              "type": "string"
+            }
+          ],
+          "optional": false,
+          "required": false
+        }
+      ],
+      "methods": [
+        {
+          "name": "exportHTML",
+          "returns": {
+            "type": "Promise<string>",
+            "docs": ""
+          },
+          "signature": "exportHTML() => Promise<string>",
+          "parameters": [],
+          "docs": "Export the editor as a string of HTML",
+          "docsTags": []
+        },
+        {
+          "name": "getInstance",
+          "returns": {
+            "type": "Promise<any>",
+            "docs": ""
+          },
+          "signature": "getInstance() => Promise<any>",
+          "parameters": [],
+          "docs": "Get the Editor.js instance",
+          "docsTags": []
+        }
+      ],
+      "events": [
+        {
+          "event": "enjinChange",
+          "detail": "any",
+          "bubbles": true,
+          "cancelable": true,
+          "composed": true,
+          "docs": "An event emitted on each change in the editor",
+          "docsTags": []
+        }
+      ],
+      "listeners": [],
+      "styles": [],
+      "slots": [],
+      "parts": [],
+      "dependents": [],
+      "dependencies": [],
+      "dependencyGraph": {}
+    }
+  ]
+}

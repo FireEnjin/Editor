@@ -1,0 +1,1 @@
+import{r as s,h as t,H as o,a as r}from"./p-f8ec8bf0.js";import{g as e}from"./p-600d7181.js";let i=class{constructor(t){s(this,t),this.inputId="ion-selopt-"+n++,this.disabled=!1}render(){return t(o,{role:"option",id:this.inputId,class:e(this)})}get el(){return r(this)}},n=0;i.style=":host{display:none}";export{i as ion_select_option}

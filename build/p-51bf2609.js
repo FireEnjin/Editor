@@ -1,0 +1,1 @@
+import{i as o}from"./p-600d7181.js";const s=()=>{o()};export{s as g}
