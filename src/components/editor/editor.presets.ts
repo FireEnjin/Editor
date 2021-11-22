@@ -1,4 +1,4 @@
-import { OrganismPresets } from "@madnesslabs/fireenjin-designer/dist/types/interfaces";
+import { OrganismPresets } from "@fireenjin/docs/dist/types/interfaces";
 
 export default {
   defaut: {
