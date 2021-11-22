@@ -5,14 +5,14 @@ export default {
     name: "Default",
     hooks: {
       async onComponentDidLoad({ organismEl }) {
-        const enjinEditorEl = organismEl.querySelector("enjin-editor");
-        const editorJs = await enjinEditorEl.getInstance();
+        const fireenjinEditorEl = organismEl.querySelector("fireenjin-editor");
+        const editorJs = await fireenjinEditorEl.getInstance();
         setTimeout(() => {
           editorJs.blocks.render({});
         }, 5000);
       },
     },
     innerHTML: () =>
-      `<ion-app><ion-content><enjin-editor></enjin-editor></ion-content></ion-app>`,
+      `<ion-app><ion-content><fireenjin-editor></fireenjin-editor></ion-content></ion-app>`,
   },
 } as OrganismPresets;

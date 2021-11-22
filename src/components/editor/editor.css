@@ -1,106 +1,106 @@
-enjin-editor {
+fireenjin-editor {
   display: block;
   color: var(--ion-text-color);
 }
 
-enjin-editor editorjs-style {
+fireenjin-editor editorjs-style {
   display: block;
 }
 
-enjin-editor .ce-toolbox__button--active,
-enjin-editor .ce-toolbox__button:hover,
-enjin-editor .ce-toolbar__plus--active,
-enjin-editor .ce-toolbar__plus:hover,
-enjin-editor .cdx-settings-button--active,
-enjin-editor .cdx-settings-button:hover {
+fireenjin-editor .ce-toolbox__button--active,
+fireenjin-editor .ce-toolbox__button:hover,
+fireenjin-editor .ce-toolbar__plus--active,
+fireenjin-editor .ce-toolbar__plus:hover,
+fireenjin-editor .cdx-settings-button--active,
+fireenjin-editor .cdx-settings-button:hover {
   color: var(--ion-color-primary);
 }
 
-enjin-editor .ce-settings__button--confirm {
+fireenjin-editor .ce-settings__button--confirm {
   background-color: var(--ion-color-danger) !important;
   color: var(--ion-color-danger-contrast);
 }
 
-enjin-editor .ce-block--selected .ce-block__content {
+fireenjin-editor .ce-block--selected .ce-block__content {
   background: var(--ion-color-base-tint);
 }
 
-enjin-editor .ce-toolbar {
+fireenjin-editor .ce-toolbar {
   z-index: 9;
 }
 
-enjin-editor .ce-toolbox {
+fireenjin-editor .ce-toolbox {
   background-color: var(--ion-background-color);
 }
-enjin-editor .ce-toolbar__settings-btn {
+fireenjin-editor .ce-toolbar__settings-btn {
   background-color: var(--ion-color-base-shade);
 }
-enjin-editor .ce-inline-toolbar,
-enjin-editor .ce-conversion-toolbar,
-enjin-editor .ce-settings {
+fireenjin-editor .ce-inline-toolbar,
+fireenjin-editor .ce-conversion-toolbar,
+fireenjin-editor .ce-settings {
   color: var(--ion-text-color);
   background-color: var(--ion-color-base-shade);
   border-color: var(--ion-color-base-tint);
 }
-enjin-editor .ce-inline-toolbar__dropdown {
+fireenjin-editor .ce-inline-toolbar__dropdown {
   border-right-color: var(--ion-color-base-tint);
 }
-enjin-editor .ce-inline-toolbar__dropdown:hover,
-enjin-editor .ce-inline-tool:hover,
-enjin-editor .ce-settings__button:hover,
-enjin-editor .cdx-settings-button:hover {
+fireenjin-editor .ce-inline-toolbar__dropdown:hover,
+fireenjin-editor .ce-inline-tool:hover,
+fireenjin-editor .ce-settings__button:hover,
+fireenjin-editor .cdx-settings-button:hover {
   background-color: var(--ion-color-base-tint);
 }
-enjin-editor .ce-inline-tool,
-enjin-editor .ce-settings,
-enjin-editor .cdx-settings-button {
+fireenjin-editor .ce-inline-tool,
+fireenjin-editor .ce-settings,
+fireenjin-editor .cdx-settings-button {
   color: var(--ion-text-color);
 }
-enjin-editor .ce-inline-tool svg,
-enjin-editor .ce-settings svg,
-enjin-editor .cdx-settings-button svg {
+fireenjin-editor .ce-inline-tool svg,
+fireenjin-editor .ce-settings svg,
+fireenjin-editor .cdx-settings-button svg {
   fill: var(--ion-text-color);
 }
-enjin-editor .ce-inline-tool--active svg,
-enjin-editor .cdx-settings-button--active svg {
+fireenjin-editor .ce-inline-tool--active svg,
+fireenjin-editor .cdx-settings-button--active svg {
   fill: var(--ion-color-primary);
 }
-enjin-editor .ce-conversion-tool__icon {
+fireenjin-editor .ce-conversion-tool__icon {
   border-color: var(--ion-color-base-tint);
   background: var(--ion-color-base);
 }
-enjin-editor .ce-conversion-tool--focused {
+fireenjin-editor .ce-conversion-tool--focused {
   background: rgba(var(--ion-color-primary-rgb), 0.2) !important;
 }
-enjin-editor .ce-conversion-tool:hover {
+fireenjin-editor .ce-conversion-tool:hover {
   background-color: var(--ion-color-primary);
   color: var(--ion-text-color);
 }
-enjin-editor .ce-conversion-tool:hover svg {
+fireenjin-editor .ce-conversion-tool:hover svg {
   color: var(--ion-text-color);
 }
-enjin-editor .ce-inline-toolbar__actions input {
+fireenjin-editor .ce-inline-toolbar__actions input {
   background: transparent;
 }
-enjin-editor textarea.cdx-input {
+fireenjin-editor textarea.cdx-input {
   background-color: transparent;
 }
-enjin-editor .editor-partial {
+fireenjin-editor .editor-partial {
   min-height: 40px;
 }
-enjin-editor .ce-code-tool__textarea {
+fireenjin-editor .ce-code-tool__textarea {
   min-height: 200px;
   resize: vertical;
   border: 0;
   font-size: 12px;
   overscroll-behavior: contain;
 }
-enjin-editor .ce-block--drop-target .ce-block__content {
+fireenjin-editor .ce-block--drop-target .ce-block__content {
   outline-color: #a0a0a0;
   outline-style: dashed;
   outline-width: 1px;
 }
-enjin-editor .ce-block--drop-target .ce-block__content:before {
+fireenjin-editor .ce-block--drop-target .ce-block__content:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -115,24 +115,24 @@ enjin-editor .ce-block--drop-target .ce-block__content:before {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-enjin-editor .ce-block--drop-target .ce-block__content:after {
+fireenjin-editor .ce-block--drop-target .ce-block__content:after {
   background: none;
 }
-enjin-editor ace-widget {
+fireenjin-editor ace-widget {
   display: block;
 }
-enjin-editor .show-preview ace-widget {
+fireenjin-editor .show-preview ace-widget {
   display: none;
 }
-enjin-editor .html-preview {
+fireenjin-editor .html-preview {
   display: none;
 }
-enjin-editor .show-preview .html-preview {
+fireenjin-editor .show-preview .html-preview {
   display: block;
 }
 
 @media (min-width: 651px) {
-  enjin-editor .codex-editor--narrow .ce-toolbar__plus {
+  fireenjin-editor .codex-editor--narrow .ce-toolbar__plus {
     left: -60px;
   }
 }
