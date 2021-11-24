@@ -41,15 +41,15 @@
     "@ionic-native/social-sharing": "^5.36.0",
     "@ionic-native/twitter-connect": "^5.36.0",
     "@ionic/core": "^5.9.1",
-    "@stencil/core": "^2.10.0",
+    "@stencil/core": "^2.11.0",
     "editorjs-paragraph-with-alignment": "^3.0.0",
     "editorjs-parser": "^1.5.3",
     "editorjs-style": "^3.0.2",
     "remark": "^14.0.2"
   },
   "devDependencies": {
-    "@fireenjin/cli": "^1.0.3",
-    "@fireenjin/docs": "^1.0.1",
+    "@fireenjin/cli": "^1.0.4",
+    "@fireenjin/docs": "^1.0.3",
     "@types/jest": "^27.0.3",
     "ace-builds": "^1.4.13",
     "husky": "^7.0.4",
