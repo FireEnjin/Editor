@@ -42,6 +42,7 @@
     "@ionic-native/twitter-connect": "^5.36.0",
     "@ionic/core": "^5.9.1",
     "@stencil/core": "^2.11.0",
+    "diagram-js": "^7.8.1",
     "editorjs-paragraph-with-alignment": "^3.0.0",
     "editorjs-parser": "^1.5.3",
     "editorjs-style": "^3.0.2",

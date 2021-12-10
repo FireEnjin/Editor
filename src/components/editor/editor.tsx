@@ -29,6 +29,7 @@ import Partial from "./blocks/Partial";
 import Tasklist from "./blocks/Tasklist";
 import Code from "./blocks/Code";
 import Input from "./blocks/Input";
+import Diagram from "./blocks/Diagram";
 
 @Component({
   tag: "fireenjin-editor",
@@ -151,9 +152,8 @@ export class EnjinEditor implements ComponentInterface {
             class: Header,
             inlineToolbar: true,
           },
-          button: {
-            class: Button,
-          },
+          button: Button,
+          diagram: Diagram,
           image: {
             class: ImageTool,
             config: {
