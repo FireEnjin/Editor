@@ -12,9 +12,9 @@ export class CodeEditor {
     emmet: any;
 
     @Prop() name = "code";
-    @Prop() value: string;
+    @Prop({ mutable: true }) value: string;
     @Prop() theme = 'vs-dark';
-    @Prop() language = "html";
+    @Prop() language = "typescript";
     @Prop() options: any = {};
     @Prop() disableEmmet = false;
 
@@ -32,6 +32,7 @@ export class CodeEditor {
 
     @Watch("value")
     onValueChange(val) {
+        if (val === this.value) return;
         this.editor.setValue(val);
     }
 
@@ -56,11 +57,21 @@ export class CodeEditor {
             `], { type: 'text/javascript' }));
 
             (window as any).require(["vs/editor/editor.main"], () => {
+                //const editor = monaco.editor.create(this.codeEl, {
                 this.editor = (window as any).monaco.editor.create(this.codeEl, {
                     value: this.value,
                     language: this.language,
                     theme: this.theme,
                     ...this.options
+                });
+                this.editor.onKeyUp(() => {
+                    this.value = this.editor.getValue();
+                });
+                this.editor.onDidPaste(() => {
+                    this.value = this.editor.getValue();
+                });
+                this.editor.onMouseUp(() => {
+                    this.value = this.editor.getValue();
                 });
                 if (!this.disableEmmet) {
                     if (this.language === "html") {
@@ -73,10 +84,10 @@ export class CodeEditor {
                             (window as any).monaco,
                             ["css"]
                         );
-                    } else if (this.language === "jsx" || this.language === "tsx") {
+                    } else if (["javascript", "typescript", "ts", "tsx", "js", "jsx"].includes(this.language)) {
                         this.emmet = emmetJSX(
                             (window as any).monaco,
-                            ["jsx", "tsx"]
+                            ["javascript", "typescript"]
                         );
                     }
                 }
