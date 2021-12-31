@@ -14,7 +14,7 @@ export class CodeEditor {
     @Prop() name = "code";
     @Prop({ mutable: true }) value: string;
     @Prop() theme = 'vs-dark';
-    @Prop() language = "typescript";
+    @Prop() language = "html";
     @Prop() options: any = {};
     @Prop() disableEmmet = false;
 

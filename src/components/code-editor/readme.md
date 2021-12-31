@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type      | Default        |
-| -------------- | --------------- | ----------- | --------- | -------------- |
-| `disableEmmet` | `disable-emmet` |             | `boolean` | `false`        |
-| `language`     | `language`      |             | `string`  | `"typescript"` |
-| `name`         | `name`          |             | `string`  | `"code"`       |
-| `options`      | `options`       |             | `any`     | `{}`           |
-| `theme`        | `theme`         |             | `string`  | `'vs-dark'`    |
-| `value`        | `value`         |             | `string`  | `undefined`    |
+| Property       | Attribute       | Description | Type      | Default     |
+| -------------- | --------------- | ----------- | --------- | ----------- |
+| `disableEmmet` | `disable-emmet` |             | `boolean` | `false`     |
+| `language`     | `language`      |             | `string`  | `"html"`    |
+| `name`         | `name`          |             | `string`  | `"code"`    |
+| `options`      | `options`       |             | `any`     | `{}`        |
+| `theme`        | `theme`         |             | `string`  | `'vs-dark'` |
+| `value`        | `value`         |             | `string`  | `undefined` |
 
 
 ## Methods
