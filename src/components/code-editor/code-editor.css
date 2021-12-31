@@ -1,6 +1,7 @@
 fireenjin-code-editor {
   display: block;
   min-height: 50vh;
+  position: relative;
 }
 
 fireenjin-code-editor code {

@@ -4,12 +4,11 @@ export default {
   defaut: {
     name: "Default",
     props: {
-      value: `<ion-card>Testing</ion-card>`,
-    },
-    hooks: {
-      onComponentWillLoad: ({ organismEl }) => {
-        organismEl.value = `<ion-card>Testing</ion-card>`;
-      },
+      value: `<ion-card>
+  <ion-item>
+    <ion-label>Testing</ion-label>
+  <ion-item>
+</ion-card>`,
     },
   },
 } as OrganismPresets;

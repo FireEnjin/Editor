@@ -1,5 +1,6 @@
 import { Build, Component, h, Method, Prop, Watch } from '@stencil/core';
 // import * as monaco from "monaco-editor";
+import { emmetHTML, emmetCSS, emmetJSX } from 'emmet-monaco-es';
 
 @Component({
     tag: 'fireenjin-code-editor',
@@ -8,12 +9,14 @@ import { Build, Component, h, Method, Prop, Watch } from '@stencil/core';
 export class CodeEditor {
     codeEl: HTMLElement;
     editor: any;
+    emmet: any;
 
-    @Prop() name?= "code";
-    @Prop() value?: string;
-    @Prop() theme?= 'vs-dark';
-    @Prop() language?= "html";
-    @Prop() options?: any = {};
+    @Prop() name = "code";
+    @Prop() value: string;
+    @Prop() theme = 'vs-dark';
+    @Prop() language = "html";
+    @Prop() options: any = {};
+    @Prop() disableEmmet = false;
 
     async injectScript(src) {
         return new Promise((resolve, reject) => {
@@ -59,8 +62,32 @@ export class CodeEditor {
                     theme: this.theme,
                     ...this.options
                 });
+                if (!this.disableEmmet) {
+                    if (this.language === "html") {
+                        this.emmet = emmetHTML(
+                            (window as any).monaco,
+                            ["html", "php"]
+                        );
+                    } else if (this.language === "css") {
+                        this.emmet = emmetCSS(
+                            (window as any).monaco,
+                            ["css"]
+                        );
+                    } else if (this.language === "jsx" || this.language === "tsx") {
+                        this.emmet = emmetJSX(
+                            (window as any).monaco,
+                            ["jsx", "tsx"]
+                        );
+                    }
+                }
+
             });
         }
+    }
+
+    disconnectedCallback() {
+        this.emmet();
+        this.emmet = null;
     }
 
     render() {
