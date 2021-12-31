@@ -11,6 +11,7 @@
 | -------------- | --------------- | ----------- | --------- | ----------- |
 | `disableEmmet` | `disable-emmet` |             | `boolean` | `false`     |
 | `language`     | `language`      |             | `string`  | `"html"`    |
+| `minimap`      | `minimap`       |             | `boolean` | `false`     |
 | `name`         | `name`          |             | `string`  | `"code"`    |
 | `options`      | `options`       |             | `any`     | `{}`        |
 | `theme`        | `theme`         |             | `string`  | `'vs-dark'` |

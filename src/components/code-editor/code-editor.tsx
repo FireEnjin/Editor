@@ -1,5 +1,5 @@
 import { Build, Component, Event, EventEmitter, h, Method, Prop, Watch } from '@stencil/core';
-// import * as monaco from "monaco-editor";
+import * as monaco from "monaco-editor";
 import { emmetHTML, emmetCSS, emmetJSX } from 'emmet-monaco-es';
 
 @Component({
@@ -19,6 +19,7 @@ export class CodeEditor {
     @Prop() language = "html";
     @Prop() options: any = {};
     @Prop() disableEmmet = false;
+    @Prop() minimap = false;
 
     async injectScript(src) {
         return new Promise((resolve, reject) => {
@@ -36,6 +37,7 @@ export class CodeEditor {
     onValueChange(val) {
         if (val === this.value) return;
         this.fireenjinCodeChange.emit({
+            name: this.name,
             editor: this.editor,
             value: this.value
         });
@@ -63,13 +65,15 @@ export class CodeEditor {
             `], { type: 'text/javascript' }));
 
             (window as any).require(["vs/editor/editor.main"], () => {
-                //const editor = monaco.editor.create(this.codeEl, {
-                this.editor = (window as any).monaco.editor.create(this.codeEl, {
+                const editor = monaco.editor.create(this.codeEl, {
+                    //this.editor = (window as any).monaco.editor.create(this.codeEl, {
                     value: this.value,
                     language: this.language,
                     theme: this.theme,
+                    minimap: this.minimap,
                     ...this.options
                 });
+                this.editor = editor;
                 this.editor.onKeyUp(() => {
                     this.value = this.editor.getValue();
                 });
