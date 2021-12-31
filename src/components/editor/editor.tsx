@@ -10,7 +10,6 @@ import {
   Host,
   State,
 } from "@stencil/core";
-import "@granite-elements/ace-widget/ace-widget";
 import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
 import List from "@editorjs/list";
@@ -33,7 +32,6 @@ import Input from "./blocks/Input";
 @Component({
   tag: "fireenjin-editor",
   styleUrl: "editor.css",
-  assetsDirs: ["ace-builds"],
 })
 export class EnjinEditor implements ComponentInterface {
   @Element() editorEl: any;

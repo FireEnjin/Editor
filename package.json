@@ -33,7 +33,6 @@
     "@editorjs/image": "^2.6.2",
     "@editorjs/list": "^1.6.2",
     "@editorjs/table": "^2.0.1",
-    "@granite-elements/ace-widget": "*",
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/facebook": "^5.36.0",
     "@ionic-native/geolocation": "^5.36.0",
@@ -45,6 +44,7 @@
     "editorjs-paragraph-with-alignment": "^3.0.0",
     "editorjs-parser": "^1.5.3",
     "editorjs-style": "^3.0.2",
+    "monaco-editor": "^0.31.1",
     "remark": "^14.0.2"
   },
   "devDependencies": {

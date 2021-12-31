@@ -4,7 +4,7 @@ export default class Code {
   placeholder: string;
   CSS: any;
   data: any;
-  aceWidgetEl: any;
+  codeEditorEl: any;
   previewEl: any;
   block;
   pasteWatcher: any;
@@ -44,11 +44,6 @@ export default class Code {
         }, 20);
       } else {
         holder.classList.remove("show-preview");
-        setTimeout(() => {
-          if (this.aceWidgetEl?.editor?.focus) {
-            this.aceWidgetEl.editor.focus();
-          }
-        }, 20);
       }
     } catch (err) {
       console.log("Error toggling preview", err);
@@ -127,8 +122,7 @@ export default class Code {
    */
   static get toolbox() {
     return {
-      icon:
-        '<svg width="19" height="13"><path d="M18.004 5.794c.24.422.18.968-.18 1.328l-4.943 4.943a1.105 1.105 0 1 1-1.562-1.562l4.162-4.162-4.103-4.103A1.125 1.125 0 1 1 12.97.648l4.796 4.796c.104.104.184.223.239.35zm-15.142.547l4.162 4.162a1.105 1.105 0 1 1-1.562 1.562L.519 7.122c-.36-.36-.42-.906-.18-1.328a1.13 1.13 0 0 1 .239-.35L5.374.647a1.125 1.125 0 0 1 1.591 1.591L2.862 6.341z"/></svg>',
+      icon: '<svg width="19" height="13"><path d="M18.004 5.794c.24.422.18.968-.18 1.328l-4.943 4.943a1.105 1.105 0 1 1-1.562-1.562l4.162-4.162-4.103-4.103A1.125 1.125 0 1 1 12.97.648l4.796 4.796c.104.104.184.223.239.35zm-15.142.547l4.162 4.162a1.105 1.105 0 1 1-1.562 1.562L.519 7.122c-.36-.36-.42-.906-.18-1.328a1.13 1.13 0 0 1 .239-.35L5.374.647a1.125 1.125 0 0 1 1.591 1.591L2.862 6.341z"/></svg>',
       title: "Raw HTML",
     };
   }
@@ -166,7 +160,7 @@ export default class Code {
       preview: data.preview || false,
     };
 
-    this.aceWidgetEl = null;
+    this.codeEditorEl = null;
   }
 
   injectScript(src) {
@@ -191,36 +185,16 @@ export default class Code {
     const wrapper = document.createElement("div");
     const renderingTime = 100;
 
-    this.aceWidgetEl = document.createElement("ace-widget");
-    this.aceWidgetEl.baseUrl = "/build/ace-builds/";
-    this.aceWidgetEl.mode = "ace/mode/html";
-    wrapper.classList.add(this.CSS.baseClass, this.CSS.wrapper);
+    this.codeEditorEl = document.createElement("fireenjin-code-editor");
+    this.codeEditorEl.value = this.data?.html || "";
 
-    this.aceWidgetEl.classList.add(this.CSS.textarea, this.CSS.input);
-    this.aceWidgetEl.value = this.data?.html ? this.data.html : "";
-    this.aceWidgetEl.enableLiveAutocompletion = true;
-    this.aceWidgetEl.enableSnippets = true;
-    this.aceWidgetEl.placeholder = this.placeholder;
-
-    if (this.readOnly) {
-      this.aceWidgetEl.disabled = true;
-    } else {
-      this.aceWidgetEl.addEventListener("input", () => {
-        this.previewEl.innerHTML = this.aceWidgetEl?.editor?.getValue
-          ? this.aceWidgetEl.editor.getValue()
-          : "";
-      });
-    }
-
-    wrapper.appendChild(this.aceWidgetEl);
+    wrapper.appendChild(this.codeEditorEl);
 
     this.previewEl = document.createElement("div");
     this.previewEl.classList.add("html-preview");
     this.previewEl.contentEditable = "true";
     this.previewEl.addEventListener("input", () => {
-      this.aceWidgetEl.editor.setValue(
-        this.previewEl?.innerHTML ? this.previewEl.innerHTML : ""
-      );
+      this.previewEl(this.previewEl?.innerHTML || "");
     });
     this.previewEl.innerHTML = this.data?.html ? this.data.html : "";
 
@@ -232,10 +206,6 @@ export default class Code {
         holder.classList.add("show-preview");
         if (this.previewEl?.focus) {
           this.previewEl.focus();
-        }
-      } else {
-        if (this.aceWidgetEl?.editor?.focus) {
-          this.aceWidgetEl.editor.focus();
         }
       }
       if (!this.pasteWatcher) {
@@ -275,9 +245,7 @@ export default class Code {
    */
   save(_rawToolsWrapper) {
     return {
-      html: this.aceWidgetEl?.editor?.getValue
-        ? this.aceWidgetEl.editor.getValue()
-        : "",
+      html: this.codeEditorEl?.value || "",
       preview: !!this.data.preview,
     };
   }
