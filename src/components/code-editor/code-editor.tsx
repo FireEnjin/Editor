@@ -1,4 +1,4 @@
-import { Build, Component, h, Method, Prop, Watch } from '@stencil/core';
+import { Build, Component, Event, EventEmitter, h, Method, Prop, Watch } from '@stencil/core';
 // import * as monaco from "monaco-editor";
 import { emmetHTML, emmetCSS, emmetJSX } from 'emmet-monaco-es';
 
@@ -10,6 +10,8 @@ export class CodeEditor {
     codeEl: HTMLElement;
     editor: any;
     emmet: any;
+
+    @Event() fireenjinCodeChange: EventEmitter;
 
     @Prop() name = "code";
     @Prop({ mutable: true }) value: string;
@@ -33,6 +35,10 @@ export class CodeEditor {
     @Watch("value")
     onValueChange(val) {
         if (val === this.value) return;
+        this.fireenjinCodeChange.emit({
+            editor: this.editor,
+            value: this.value
+        });
         this.editor.setValue(val);
     }
 

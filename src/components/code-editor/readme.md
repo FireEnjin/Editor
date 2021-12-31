@@ -17,6 +17,13 @@
 | `value`        | `value`         |             | `string`  | `undefined` |
 
 
+## Events
+
+| Event                 | Description | Type               |
+| --------------------- | ----------- | ------------------ |
+| `fireenjinCodeChange` |             | `CustomEvent<any>` |
+
+
 ## Methods
 
 ### `updateOptions(options: any) => Promise<void>`
