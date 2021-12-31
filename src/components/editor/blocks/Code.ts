@@ -46,7 +46,7 @@ export default class Code {
       } else {
         try {
           await this.codeEditorEl.format();
-          await this.codeEditorEl.focus();
+          await this.codeEditorEl.setFocus();
         } catch {
           console.log("Error formatting code");
         }

@@ -10,6 +10,7 @@
 | Property       | Attribute       | Description | Type                                                                                                                                                                                               | Default                                                           |
 | -------------- | --------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `disableEmmet` | `disable-emmet` |             | `boolean`                                                                                                                                                                                          | `false`                                                           |
+| `disableFocus` | `disable-focus` |             | `boolean`                                                                                                                                                                                          | `false`                                                           |
 | `language`     | `language`      |             | `string`                                                                                                                                                                                           | `"html"`                                                          |
 | `minimap`      | --              |             | `{ enabled?: boolean; side?: "right" \| "left"; size?: "proportional" \| "fill" \| "fit"; showSlider?: "always" \| "mouseover"; renderCharacters?: boolean; maxColumn?: number; scale?: number; }` | `{             enabled: false         }`                          |
 | `name`         | `name`          |             | `string`                                                                                                                                                                                           | `"code"`                                                          |
@@ -38,6 +39,16 @@ Type: `Promise<any>`
 
 
 ### `getValue(options: any) => Promise<any>`
+
+
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
+### `setFocus() => Promise<any>`
 
 
 

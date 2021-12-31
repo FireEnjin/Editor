@@ -91,7 +91,7 @@ export class CodeEditor {
     }
 
     @Method()
-    async focus() {
+    async setFocus() {
         return this.editor.focus();
     }
 
