@@ -35,6 +35,7 @@ export default class Code {
         ).innerHTML = this.icons[this.data?.preview ? "eye-off" : "eye"];
       }
       if (this.data?.preview) {
+        this.codeEditorEl.getPosition();
         this.previewEl.innerHTML = (await this.codeEditorEl.getValue()) || "";
         holder.classList.add("show-preview");
         setTimeout(() => {
@@ -46,11 +47,11 @@ export default class Code {
       } else {
         try {
           await this.codeEditorEl.format();
-          await this.codeEditorEl.setFocus();
         } catch {
           console.log("Error formatting code");
         }
         holder.classList.remove("show-preview");
+        setTimeout(() => this.codeEditorEl.setFocus(), 100);
       }
     } catch (err) {
       console.log("Error toggling preview", err);
@@ -227,7 +228,7 @@ export default class Code {
       }
       if (!this.previewToggleKeyWatcher) {
         this.previewToggleKeyWatcher = (event) => {
-          if (event?.keyCode === 80 && !!event?.altKey) {
+          if (event?.keyCode === 192 && !!event?.altKey) {
             this.togglePreview();
           }
         };

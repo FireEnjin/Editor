@@ -38,6 +38,16 @@ Type: `Promise<any>`
 
 
 
+### `getPosition() => Promise<any>`
+
+
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
 ### `getValue(options: any) => Promise<any>`
 
 
@@ -48,7 +58,17 @@ Type: `Promise<any>`
 
 
 
-### `setFocus() => Promise<any>`
+### `setFocus() => Promise<boolean>`
+
+
+
+#### Returns
+
+Type: `Promise<boolean>`
+
+
+
+### `setPosition(options: any) => Promise<any>`
 
 
 

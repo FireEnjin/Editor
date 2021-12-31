@@ -10,6 +10,7 @@ export class CodeEditor {
     codeEl: HTMLElement;
     editor: any;
     emmet: any;
+    lastPosition: any;
 
     @Event() fireenjinCodeChange: EventEmitter;
 
@@ -92,7 +93,20 @@ export class CodeEditor {
 
     @Method()
     async setFocus() {
-        return this.editor.focus();
+        this.editor?.focus?.();
+        this.editor?.setPosition?.(this.lastPosition);
+        return true;
+    }
+
+    @Method()
+    async setPosition(options: any) {
+        return this.editor?.setPosition?.(options);
+    }
+
+    @Method()
+    async getPosition() {
+        this.lastPosition = this.editor?.getPosition?.();
+        return this.lastPosition;
     }
 
     @Method()
