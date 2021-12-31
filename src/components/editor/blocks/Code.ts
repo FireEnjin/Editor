@@ -44,6 +44,11 @@ export default class Code {
           }
         }, 20);
       } else {
+        try {
+          await this.codeEditorEl.format();
+        } catch {
+          console.log("Error formatting code");
+        }
         holder.classList.remove("show-preview");
       }
     } catch (err) {

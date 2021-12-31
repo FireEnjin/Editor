@@ -17,7 +17,11 @@ export class CodeEditor {
     @Prop({ mutable: true }) value: string;
     @Prop() theme = 'vs-dark';
     @Prop() language = "html";
-    @Prop() options: any = {};
+    @Prop() disableFocus = false;
+    @Prop() options: any = {
+        formatOnPaste: true,
+        formatOnType: true
+    };
     @Prop() disableEmmet = false;
     @Prop() minimap: {
         /**
@@ -81,6 +85,15 @@ export class CodeEditor {
         return this.editor.getValue(options);
     }
 
+    @Method()
+    async format() {
+        return this.editor.getAction('editor.action.format').run();
+    }
+
+    @Method()
+    async focus() {
+        return this.editor.focus();
+    }
 
     @Method()
     async updateOptions(options: any) {
@@ -103,6 +116,7 @@ export class CodeEditor {
             `], { type: 'text/javascript' }));
 
             (window as any).require(["vs/editor/editor.main"], () => {
+                //const editor = monaco.editor.create(this.codeEl, {
                 this.editor = (window as any).monaco.editor.create(this.codeEl, {
                     value: this.value,
                     language: this.language,
@@ -110,6 +124,8 @@ export class CodeEditor {
                     minimap: this.minimap,
                     ...this.options
                 });
+                //this.editor = editor;
+                if (!this.disableFocus) this.editor.focus();
                 this.editor.onKeyUp(() => {
                     this.fireenjinCodeChange.emit({
                         name: this.name,
