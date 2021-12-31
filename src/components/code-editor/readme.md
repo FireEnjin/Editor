@@ -27,6 +27,16 @@
 
 ## Methods
 
+### `getValue(options: any) => Promise<any>`
+
+
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
 ### `updateOptions(options: any) => Promise<void>`
 
 

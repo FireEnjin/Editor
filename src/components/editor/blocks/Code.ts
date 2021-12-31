@@ -25,7 +25,7 @@ export default class Code {
     },
   ];
 
-  togglePreview() {
+  async togglePreview() {
     try {
       this.data.preview = !this.data?.preview;
       const holder: HTMLElement = this.block.holder;
@@ -35,6 +35,7 @@ export default class Code {
         ).innerHTML = this.icons[this.data?.preview ? "eye-off" : "eye"];
       }
       if (this.data?.preview) {
+        this.previewEl.innerHTML = (await this.codeEditorEl.getValue()) || "";
         holder.classList.add("show-preview");
         setTimeout(() => {
           if (this.previewEl?.focus) {
@@ -194,7 +195,7 @@ export default class Code {
     this.previewEl.classList.add("html-preview");
     this.previewEl.contentEditable = "true";
     this.previewEl.addEventListener("input", () => {
-      this.previewEl(this.previewEl?.innerHTML || "");
+      this.codeEditorEl.value = this.previewEl?.innerHTML || "";
     });
     this.previewEl.innerHTML = this.data?.html ? this.data.html : "";
 

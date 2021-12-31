@@ -118,10 +118,10 @@ fireenjin-editor .ce-block--drop-target .ce-block__content:before {
 fireenjin-editor .ce-block--drop-target .ce-block__content:after {
   background: none;
 }
-fireenjin-editor ace-widget {
+fireenjin-editor fireenjin-code-editor {
   display: block;
 }
-fireenjin-editor .show-preview ace-widget {
+fireenjin-editor .show-preview fireenjin-code-editor {
   display: none;
 }
 fireenjin-editor .html-preview {

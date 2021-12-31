@@ -1,5 +1,5 @@
 import { Build, Component, Event, EventEmitter, h, Method, Prop, Watch } from '@stencil/core';
-import * as monaco from "monaco-editor";
+// import * as monaco from "monaco-editor";
 import { emmetHTML, emmetCSS, emmetJSX } from 'emmet-monaco-es';
 
 @Component({
@@ -71,15 +71,16 @@ export class CodeEditor {
     }
 
     @Watch("value")
-    onValueChange(val) {
-        if (val === this.value) return;
-        this.fireenjinCodeChange.emit({
-            name: this.name,
-            editor: this.editor,
-            value: this.value
-        });
-        this.editor.setValue(val);
+    onValueChange(value, oldValue) {
+        if (oldValue === value) return;
+        this.editor.setValue(value);
     }
+
+    @Method()
+    async getValue(options: any) {
+        return this.editor.getValue(options);
+    }
+
 
     @Method()
     async updateOptions(options: any) {
@@ -102,23 +103,33 @@ export class CodeEditor {
             `], { type: 'text/javascript' }));
 
             (window as any).require(["vs/editor/editor.main"], () => {
-                const editor = monaco.editor.create(this.codeEl, {
-                    //this.editor = (window as any).monaco.editor.create(this.codeEl, {
+                this.editor = (window as any).monaco.editor.create(this.codeEl, {
                     value: this.value,
                     language: this.language,
                     theme: this.theme,
                     minimap: this.minimap,
                     ...this.options
                 });
-                this.editor = editor;
                 this.editor.onKeyUp(() => {
-                    this.value = this.editor.getValue();
+                    this.fireenjinCodeChange.emit({
+                        name: this.name,
+                        editor: this.editor,
+                        value: this.editor.getValue()
+                    });
                 });
                 this.editor.onDidPaste(() => {
-                    this.value = this.editor.getValue();
+                    this.fireenjinCodeChange.emit({
+                        name: this.name,
+                        editor: this.editor,
+                        value: this.editor.getValue()
+                    });
                 });
                 this.editor.onMouseUp(() => {
-                    this.value = this.editor.getValue();
+                    this.fireenjinCodeChange.emit({
+                        name: this.name,
+                        editor: this.editor,
+                        value: this.editor.getValue()
+                    });
                 });
                 if (!this.disableEmmet) {
                     if (this.language === "html") {
