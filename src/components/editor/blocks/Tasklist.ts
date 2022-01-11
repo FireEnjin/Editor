@@ -440,6 +440,8 @@ export default class Tasklist {
    * @param {KeyboardEvent} event - keyboard event
    */
   backspace(event) {
+    if (!window?.getSelection) return;
+
     const currentItem = event.target.closest(`.${this.CSS.item}`);
     const currentIndex = this.items.indexOf(currentItem);
     const prevItem = this.items[currentIndex - 1];

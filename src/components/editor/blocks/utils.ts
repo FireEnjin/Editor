@@ -4,6 +4,7 @@
  * @returns {DocumentFragment} extracted HTML nodes
  */
 export function extractContentAfterCaret() {
+  if (!window?.getSelection) return;
   const input = document.activeElement;
   const selection = window.getSelection();
   const selectRange = selection.getRangeAt(0);
@@ -77,6 +78,7 @@ export function getHTML(el) {
  * @returns {void}
  */
 export function moveCaret(element, toStart = false, offset = undefined) {
+  if (!window?.getSelection) return;
   const range = document.createRange();
   const selection = window.getSelection();
 
