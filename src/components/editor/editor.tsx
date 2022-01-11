@@ -9,6 +9,7 @@ import {
   Method,
   Host,
   State,
+  Build,
 } from "@stencil/core";
 import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
@@ -126,6 +127,7 @@ export class EnjinEditor implements ComponentInterface {
   }
 
   async componentDidLoad() {
+    if (!Build?.isBrowser) return;
     this.editorJS = new EditorJS({
       onChange: () => {
         this.enjinChange.emit({ instance: this.editorJS });
