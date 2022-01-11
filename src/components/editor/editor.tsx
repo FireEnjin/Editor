@@ -23,7 +23,6 @@ import Undo from "./blocks/Undo";
 import DragDrop from "./blocks/DragDrop";
 import { MDParser, MDImporter } from "./blocks/Markdown";
 import Button from "./blocks/Button";
-import Page from "./blocks/Page";
 import Partial from "./blocks/Partial";
 import Tasklist from "./blocks/Tasklist";
 import Code from "./blocks/Code";
@@ -179,7 +178,6 @@ export class EnjinEditor implements ComponentInterface {
           table: {
             class: Table,
           },
-          page: Page,
           code: Code,
           partial: {
             class: Partial,

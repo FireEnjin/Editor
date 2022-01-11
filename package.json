@@ -39,7 +39,6 @@
     "@ionic-native/google-plus": "^5.36.0",
     "@ionic-native/social-sharing": "^5.36.0",
     "@ionic-native/twitter-connect": "^5.36.0",
-    "@ionic/core": "^6.0.1",
     "@stencil/core": "^2.12.1",
     "editorjs-paragraph-with-alignment": "^3.0.0",
     "editorjs-parser": "^1.5.3",

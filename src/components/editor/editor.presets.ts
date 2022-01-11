@@ -12,7 +12,6 @@ export default {
         }, 5000);
       },
     },
-    innerHTML: () =>
-      `<ion-app><ion-content><fireenjin-editor></fireenjin-editor></ion-content></ion-app>`,
+    innerHTML: () => `<fireenjin-editor></fireenjin-editor>`,
   },
 } as OrganismPresets;
