@@ -19,9 +19,9 @@
 
 ## Events
 
-| Event         | Description                                   | Type               |
-| ------------- | --------------------------------------------- | ------------------ |
-| `enjinChange` | An event emitted on each change in the editor | `CustomEvent<any>` |
+| Event             | Description                                   | Type               |
+| ----------------- | --------------------------------------------- | ------------------ |
+| `fireenjinChange` | An event emitted on each change in the editor | `CustomEvent<any>` |
 
 
 ## Methods

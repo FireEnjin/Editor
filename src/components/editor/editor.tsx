@@ -74,7 +74,7 @@ export class EnjinEditor implements ComponentInterface {
   /**
    * An event emitted on each change in the editor
    */
-  @Event() enjinChange: EventEmitter;
+  @Event() fireenjinChange: EventEmitter;
 
   /**
    * Get the Editor.js instance
@@ -130,7 +130,7 @@ export class EnjinEditor implements ComponentInterface {
     if (!Build?.isBrowser) return;
     this.editorJS = new EditorJS({
       onChange: () => {
-        this.enjinChange.emit({ instance: this.editorJS });
+        this.fireenjinChange.emit({ instance: this.editorJS });
       },
       onReady: () => {
         new DragDrop(this.editorJS as any);

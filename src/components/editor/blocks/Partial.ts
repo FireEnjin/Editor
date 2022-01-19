@@ -57,6 +57,15 @@ export default class Partial {
         return;
       this.selectedPartial = event.detail.template;
       partialWrapperEl.innerHTML = this.selectedPartial.html;
+      document.dispatchEvent(
+        new CustomEvent("fireenjinChange", {
+          detail: {
+            event,
+            name: `block-${this.blockId}`,
+            value: this.selectedPartial.html,
+          },
+        })
+      );
       if (!this.modalEl) return;
       this.modalEl.dismiss();
     });
