@@ -88,7 +88,7 @@ export class CodeEditor {
 
     @Method()
     async format() {
-        return this.editor.getAction('editor.action.format').run();
+        return this.editor.getAction('editor.action.formatDocument').run();
     }
 
     @Method()
