@@ -195,7 +195,10 @@ export default class Code {
 
     this.codeEditorEl = document.createElement("fireenjin-code-editor");
     this.codeEditorEl.value = this.data?.html || "";
-
+    this.codeEditorEl.addEventListener("fireenjinCodeChange", (event) => {
+      if (event?.detail?.value) this.data.html = event.detail.value;
+      this.api.save();
+    });
     wrapper.appendChild(this.codeEditorEl);
 
     this.previewEl = document.createElement("div");
@@ -203,6 +206,7 @@ export default class Code {
     this.previewEl.contentEditable = "true";
     this.previewEl.addEventListener("input", () => {
       this.codeEditorEl.value = this.previewEl?.innerHTML || "";
+      this.api.save();
     });
     this.previewEl.innerHTML = this.data?.html ? this.data.html : "";
 
@@ -237,8 +241,6 @@ export default class Code {
           this.previewToggleKeyWatcher.bind(this)
         );
       }
-      // TODO: Will have to in-house the ace editor solution in order to implement this
-      //this.aceWidgetEl.editor.setOption("enableEmmet", true);
     }, renderingTime);
 
     return wrapper;
@@ -251,9 +253,9 @@ export default class Code {
    * @returns {RawData} - raw HTML code
    * @public
    */
-  async save(_rawToolsWrapper) {
+  save(_rawToolsWrapper) {
     return {
-      html: (await this.codeEditorEl?.getvalue?.()) || "",
+      html: this.data?.html || "",
       preview: !!this.data.preview,
     };
   }
