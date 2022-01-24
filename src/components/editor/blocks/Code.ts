@@ -206,6 +206,7 @@ export default class Code {
     this.previewEl.contentEditable = "true";
     this.previewEl.addEventListener("input", () => {
       this.codeEditorEl.value = this.previewEl?.innerHTML || "";
+      this.data.html = this.previewEl?.innerHTML || "";
       this.api.save();
     });
     this.previewEl.innerHTML = this.data?.html ? this.data.html : "";
