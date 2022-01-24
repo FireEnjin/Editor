@@ -251,9 +251,9 @@ export default class Code {
    * @returns {RawData} - raw HTML code
    * @public
    */
-  save(_rawToolsWrapper) {
+  async save(_rawToolsWrapper) {
     return {
-      html: this.codeEditorEl?.value || "",
+      html: (await this.codeEditorEl?.getvalue?.()) || "",
       preview: !!this.data.preview,
     };
   }
