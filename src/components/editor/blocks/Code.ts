@@ -197,7 +197,7 @@ export default class Code {
     this.codeEditorEl.value = this.data?.html || "";
     this.codeEditorEl.addEventListener("fireenjinCodeChange", (event) => {
       if (event?.detail?.value) this.data.html = event.detail.value;
-      this.api.save();
+      if (this.api?.save) this.api.save();
     });
     wrapper.appendChild(this.codeEditorEl);
 
@@ -207,7 +207,7 @@ export default class Code {
     this.previewEl.addEventListener("input", () => {
       this.codeEditorEl.value = this.previewEl?.innerHTML || "";
       this.data.html = this.previewEl?.innerHTML || "";
-      this.api.save();
+      if (this.api?.save) this.api.save();
     });
     this.previewEl.innerHTML = this.data?.html ? this.data.html : "";
 
