@@ -22,7 +22,7 @@ fireenjin-editor .ce-settings__button--confirm {
 }
 
 fireenjin-editor .ce-block--selected .ce-block__content {
-  background: var(--ion-color-base-tint);
+  background: var(--ion-color-light-tint, rgba(255, 255, 255, 0.8));
 }
 
 fireenjin-editor .ce-toolbar {
@@ -33,23 +33,23 @@ fireenjin-editor .ce-toolbox {
   background-color: var(--ion-background-color);
 }
 fireenjin-editor .ce-toolbar__settings-btn {
-  background-color: var(--ion-color-base-shade);
+  background-color: var(--ion-color-light-shade, rgba(255, 255, 255, 0.8));
 }
 fireenjin-editor .ce-inline-toolbar,
 fireenjin-editor .ce-conversion-toolbar,
 fireenjin-editor .ce-settings {
   color: var(--ion-text-color);
-  background-color: var(--ion-color-base-shade);
-  border-color: var(--ion-color-base-tint);
+  background-color: var(--ion-color-light-shade, rgba(255, 255, 255, 0.8));
+  border-color: var(--ion-color-light-tint, rgba(255, 255, 255, 0.8));
 }
 fireenjin-editor .ce-inline-toolbar__dropdown {
-  border-right-color: var(--ion-color-base-tint);
+  border-right-color: var(--ion-color-light-tint, rgba(255, 255, 255, 0.8));
 }
 fireenjin-editor .ce-inline-toolbar__dropdown:hover,
 fireenjin-editor .ce-inline-tool:hover,
 fireenjin-editor .ce-settings__button:hover,
 fireenjin-editor .cdx-settings-button:hover {
-  background-color: var(--ion-color-base-tint);
+  background-color: var(--ion-color-light-tint, rgba(255, 255, 255, 0.8));
 }
 fireenjin-editor .ce-inline-tool,
 fireenjin-editor .ce-settings,
@@ -66,8 +66,8 @@ fireenjin-editor .cdx-settings-button--active svg {
   fill: var(--ion-color-primary);
 }
 fireenjin-editor .ce-conversion-tool__icon {
-  border-color: var(--ion-color-base-tint);
-  background: var(--ion-color-base);
+  border-color: var(--ion-color-light-tint, rgba(255, 255, 255, 0.8));
+  background: var(--ion-color-light);, rgba(255, 255, 255, 0.8)
 }
 fireenjin-editor .ce-conversion-tool--focused {
   background: rgba(var(--ion-color-primary-rgb), 0.2) !important;

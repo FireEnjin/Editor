@@ -168,6 +168,8 @@ export default class Code {
       preview: data.preview || false,
     };
 
+    this.api.blocks.stretchBlock(this.api.blocks.getCurrentBlockIndex(), true);
+
     this.codeEditorEl = null;
   }
 
