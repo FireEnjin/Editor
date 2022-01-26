@@ -3,6 +3,9 @@ import { OrganismPresets } from "@fireenjin/docs/dist/types/interfaces";
 export default {
   defaut: {
     name: "Default",
+    props: {
+      partials: [{ id: "test", html: "<p>Test</p>" }],
+    },
     hooks: {
       async onComponentDidLoad({ organismEl }) {
         const fireenjinEditorEl = organismEl.querySelector("fireenjin-editor");

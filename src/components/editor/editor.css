@@ -33,7 +33,7 @@ fireenjin-editor .ce-toolbox {
   background-color: var(--ion-background-color);
 }
 fireenjin-editor .ce-toolbar__settings-btn {
-  background-color: var(--ion-color-light-shade, rgba(255, 255, 255, 0.8));
+  background-color: var(--ion-background-color) var(--ion-background-color);
 }
 fireenjin-editor .ce-inline-toolbar,
 fireenjin-editor .ce-conversion-toolbar,
@@ -67,7 +67,7 @@ fireenjin-editor .cdx-settings-button--active svg {
 }
 fireenjin-editor .ce-conversion-tool__icon {
   border-color: var(--ion-color-light-tint, rgba(255, 255, 255, 0.8));
-  background: var(--ion-color-light);, rgba(255, 255, 255, 0.8)
+  background: var(--ion-color-light, rgba(255, 255, 255, 0.8));
 }
 fireenjin-editor .ce-conversion-tool--focused {
   background: rgba(var(--ion-color-primary-rgb), 0.2) !important;
