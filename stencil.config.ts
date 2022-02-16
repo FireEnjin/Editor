@@ -5,14 +5,9 @@ import { namespace } from "./package.json";
 export const config: Config = {
   namespace,
   buildEs5: false,
-  taskQueue: "async",
   plugins: [],
   globalStyle: "src/css/global.css",
   globalScript: "src/global.ts",
-  devServer: {
-    reloadStrategy: "hmr",
-    openBrowser: false,
-  },
   outputTargets: [
     {
       type: "www",
@@ -28,7 +23,7 @@ export const config: Config = {
     },
     // one file in es6
     {
-      type: "dist-custom-elements-bundle",
+      type: "dist-custom-elements",
     },
     // creates readme.md for components
     {

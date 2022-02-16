@@ -1,4 +1,4 @@
-import { OrganismPresets } from "@fireenjin/docs/dist/types/interfaces";
+import { ComponentPresets } from "@fireenjin/docs";
 
 export default {
   defaut: {
@@ -17,4 +17,4 @@ export default {
     },
     innerHTML: () => `<fireenjin-editor></fireenjin-editor>`,
   },
-} as OrganismPresets;
+} as ComponentPresets;
