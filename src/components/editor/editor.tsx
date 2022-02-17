@@ -67,7 +67,9 @@ export class EnjinEditor implements ComponentInterface {
   /**
    * The callback to be run when a file is uploaded
    */
-  @Prop() uploadCallback: (event) => Promise<{ success: boolean; file: { url: string } }>
+  @Prop() uploadCallback: (
+    event
+  ) => Promise<{ success: boolean; file: { url: string } }>;
 
   @State() editorJS: EditorJS;
 
@@ -96,12 +98,15 @@ export class EnjinEditor implements ComponentInterface {
           data.align === "center"
             ? "enjin-align-center"
             : data.align === "right"
-              ? "enjin-align-right"
-              : "enjin-align-left";
-        return `<ion-button shape="${data.shape ? data.shape : "square"
-          }" color="${data.color ? data.color : "primary"
-          }" class="${classes}" href="${data.href ? data.href : "#"}">${data.text
-          }</ion-button>`;
+            ? "enjin-align-right"
+            : "enjin-align-left";
+        return `<ion-button shape="${
+          data.shape ? data.shape : "square"
+        }" color="${
+          data.color ? data.color : "primary"
+        }" class="${classes}" href="${data.href ? data.href : "#"}">${
+          data.text
+        }</ion-button>`;
       },
       partial: (data) => {
         return `<div class="editor-partial">{{> ${data.templateId}}}</div>`;
@@ -112,7 +117,8 @@ export class EnjinEditor implements ComponentInterface {
         const html = ["<ion-list>"];
         for (const item of data?.items ? data.items : []) {
           html.push(
-            `<ion-item><ion-checkbox slot="start" color="${color}" ${item.checked ? `checked="true"` : ""
+            `<ion-item><ion-checkbox slot="start" color="${color}" ${
+              item.checked ? `checked="true"` : ""
             }></ion-checkbox><ion-label>${item.text}</ion-label></ion-item>`
           );
         }
@@ -162,7 +168,7 @@ export class EnjinEditor implements ComponentInterface {
                 },
                 uploadByUrl: async (url) => {
                   return await this.uploadCallback({ type: "url", url });
-                }
+                },
               },
             },
           },
