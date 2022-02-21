@@ -86,17 +86,19 @@ export class CodeEditor {
 
   @Watch("value")
   onValueChange(value, oldValue) {
-    if (oldValue === value) return;
+    if (oldValue === value || !this.editor?.setValue) return;
     this.editor.setValue(value);
   }
 
   @Method()
   async getValue(options: any) {
+    if (!this.editor?.getValue) return;
     return this.editor.getValue(options);
   }
 
   @Method()
   async format() {
+    if (!this.editor?.getAction) return;
     return this.editor.getAction("editor.action.formatDocument").run();
   }
 
