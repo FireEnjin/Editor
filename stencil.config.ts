@@ -12,6 +12,9 @@ export const config: Config = {
     {
       type: "www",
       serviceWorker: null,
+      copy: [
+        { src: "../node_modules/monaco-editor/min/vs", dest: "monaco-editor" },
+      ],
     },
     // creates /dist dir
     {
@@ -19,6 +22,7 @@ export const config: Config = {
       copy: [
         // copy fonts into static for storybook and stencil build
         { src: "fonts" },
+        { src: "../node_modules/monaco-editor/min/vs", dest: "monaco-editor" },
       ],
     },
     // one file in es6

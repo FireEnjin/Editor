@@ -8,7 +8,8 @@ import {
   Prop,
   Watch,
 } from "@stencil/core";
-// import * as monaco from "monaco-editor";
+import loader, { Monaco } from "@monaco-editor/loader";
+import { editor } from "monaco-editor";
 import { emmetHTML, emmetCSS, emmetJSX } from "emmet-monaco-es";
 
 @Component({
@@ -16,14 +17,16 @@ import { emmetHTML, emmetCSS, emmetJSX } from "emmet-monaco-es";
   styleUrl: "code-editor.css",
 })
 export class CodeEditor {
+  private monaco: Monaco;
   codeEl: HTMLElement;
-  editor: any;
+  editor: editor.IStandaloneCodeEditor;
   emmet: any;
   lastPosition: any;
 
   @Event() fireenjinCodeChange: EventEmitter;
 
   @Prop() name = "code";
+  @Prop() monacoVsPath: string;
   @Prop({ mutable: true }) value: string;
   @Prop() theme = "vs-dark";
   @Prop() language = "html";
@@ -32,6 +35,7 @@ export class CodeEditor {
     formatOnPaste: true,
     formatOnType: true,
   };
+  @Prop() readOnly = false;
   @Prop() disableEmmet = false;
   @Prop() minimap: {
     /**
@@ -128,79 +132,48 @@ export class CodeEditor {
   async componentDidLoad() {
     if (!Build?.isBrowser) return;
 
-    if (!window?.require) {
-      await this.injectScript(
-        "https://unpkg.com/monaco-editor@latest/min/vs/loader.js"
-      );
+    if (this.monacoVsPath) {
+      loader.config({
+        paths: {
+          vs: this.monacoVsPath,
+        },
+      });
     }
-    (window as any).require.config({
-      paths: { vs: "https://unpkg.com/monaco-editor@latest/min/vs" },
+    this.monaco = await loader.init();
+    this.editor = this.monaco.editor.create(this.codeEl, {
+      value: this.value,
+      language: this.language,
+      theme: this.theme,
+      readOnly: this.readOnly,
+      automaticLayout: true,
+      ...this.options,
     });
-    (window as any).MonacoEnvironment = { getWorkerUrl: () => proxy };
-
-    let proxy = URL.createObjectURL(
-      new Blob(
-        [
-          `
-                self.MonacoEnvironment = {
-                    baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
-                };
-                importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
-            `,
-        ],
-        { type: "text/javascript" }
-      )
-    );
-
-    (window as any).require(["vs/editor/editor.main"], () => {
-      //const editor = monaco.editor.create(this.codeEl, {
-      this.editor = (window as any).monaco.editor.create(this.codeEl, {
-        value: this.value,
-        language: this.language,
-        theme: this.theme,
-        minimap: this.minimap,
-        ...this.options,
+    this.editor.onDidChangeModelContent((event) => {
+      this.value = this.editor.getValue();
+      this.fireenjinCodeChange.emit({
+        event,
+        name: this.name,
+        editor: this.editor,
+        value: this.editor.getValue(),
       });
-      //this.editor = editor;
-      if (!this.disableFocus) this.editor.focus();
-      this.editor.onKeyUp(() => {
-        this.fireenjinCodeChange.emit({
-          name: this.name,
-          editor: this.editor,
-          value: this.editor.getValue(),
-        });
-      });
-      this.editor.onDidPaste(() => {
-        this.fireenjinCodeChange.emit({
-          name: this.name,
-          editor: this.editor,
-          value: this.editor.getValue(),
-        });
-      });
-      this.editor.onMouseUp(() => {
-        this.fireenjinCodeChange.emit({
-          name: this.name,
-          editor: this.editor,
-          value: this.editor.getValue(),
-        });
-      });
-      if (!this.disableEmmet) {
-        if (this.language === "html") {
-          this.emmet = emmetHTML((window as any).monaco, ["html", "php"]);
-        } else if (this.language === "css") {
-          this.emmet = emmetCSS((window as any).monaco, ["css"]);
-        } else if (
-          ["javascript", "typescript", "ts", "tsx", "js", "jsx"].includes(
-            this.language
-          )
-        ) {
-          this.emmet = emmetJSX((window as any).monaco, [
-            "javascript",
-            "typescript",
-          ]);
-        }
+    });
+    if (!this.disableFocus) this.editor.focus();
+    if (!this.disableEmmet) {
+      if (this.language === "html") {
+        this.emmet = emmetHTML((window as any).monaco, ["html", "php"]);
+      } else if (this.language === "css") {
+        this.emmet = emmetCSS((window as any).monaco, ["css"]);
+      } else if (
+        ["javascript", "typescript", "ts", "tsx", "js", "jsx"].includes(
+          this.language
+        )
+      ) {
+        this.emmet = emmetJSX((window as any).monaco, [
+          "javascript",
+          "typescript",
+        ]);
       }
-    });
+    }
   }
 
   disconnectedCallback() {

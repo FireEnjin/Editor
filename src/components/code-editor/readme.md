@@ -7,16 +7,18 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type                                                                                                                                                                                               | Default                                                  |
-| -------------- | --------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| `disableEmmet` | `disable-emmet` |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
-| `disableFocus` | `disable-focus` |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
-| `language`     | `language`      |             | `string`                                                                                                                                                                                           | `"html"`                                                 |
-| `minimap`      | --              |             | `{ enabled?: boolean; side?: "right" \| "left"; size?: "proportional" \| "fill" \| "fit"; showSlider?: "always" \| "mouseover"; renderCharacters?: boolean; maxColumn?: number; scale?: number; }` | `{     enabled: false,   }`                              |
-| `name`         | `name`          |             | `string`                                                                                                                                                                                           | `"code"`                                                 |
-| `options`      | `options`       |             | `any`                                                                                                                                                                                              | `{     formatOnPaste: true,     formatOnType: true,   }` |
-| `theme`        | `theme`         |             | `string`                                                                                                                                                                                           | `"vs-dark"`                                              |
-| `value`        | `value`         |             | `string`                                                                                                                                                                                           | `undefined`                                              |
+| Property       | Attribute        | Description | Type                                                                                                                                                                                               | Default                                                  |
+| -------------- | ---------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `disableEmmet` | `disable-emmet`  |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
+| `disableFocus` | `disable-focus`  |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
+| `language`     | `language`       |             | `string`                                                                                                                                                                                           | `"html"`                                                 |
+| `minimap`      | --               |             | `{ enabled?: boolean; side?: "right" \| "left"; size?: "proportional" \| "fill" \| "fit"; showSlider?: "always" \| "mouseover"; renderCharacters?: boolean; maxColumn?: number; scale?: number; }` | `{     enabled: false,   }`                              |
+| `monacoVsPath` | `monaco-vs-path` |             | `string`                                                                                                                                                                                           | `undefined`                                              |
+| `name`         | `name`           |             | `string`                                                                                                                                                                                           | `"code"`                                                 |
+| `options`      | `options`        |             | `any`                                                                                                                                                                                              | `{     formatOnPaste: true,     formatOnType: true,   }` |
+| `readOnly`     | `read-only`      |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
+| `theme`        | `theme`          |             | `string`                                                                                                                                                                                           | `"vs-dark"`                                              |
+| `value`        | `value`          |             | `string`                                                                                                                                                                                           | `undefined`                                              |
 
 
 ## Events
@@ -28,13 +30,13 @@
 
 ## Methods
 
-### `format() => Promise<any>`
+### `format() => Promise<void>`
 
 
 
 #### Returns
 
-Type: `Promise<any>`
+Type: `Promise<void>`
 
 
 
@@ -48,13 +50,13 @@ Type: `Promise<any>`
 
 
 
-### `getValue(options: any) => Promise<any>`
+### `getValue(options: any) => Promise<string>`
 
 
 
 #### Returns
 
-Type: `Promise<any>`
+Type: `Promise<string>`
 
 
 
@@ -68,13 +70,13 @@ Type: `Promise<boolean>`
 
 
 
-### `setPosition(options: any) => Promise<any>`
+### `setPosition(options: any) => Promise<void>`
 
 
 
 #### Returns
 
-Type: `Promise<any>`
+Type: `Promise<void>`
 
 
 
