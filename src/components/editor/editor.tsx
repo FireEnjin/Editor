@@ -132,6 +132,11 @@ export class EnjinEditor implements ComponentInterface {
     }).parse(await this.editorJS.save());
   }
 
+  async disconnectedCallback() {
+    if (!this.editorJS?.destroy) return;
+    this.editorJS.destroy();
+  }
+
   async componentDidLoad() {
     if (!Build?.isBrowser) return;
     this.editorJS = new EditorJS({

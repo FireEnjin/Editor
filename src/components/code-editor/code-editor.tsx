@@ -177,7 +177,9 @@ export class CodeEditor {
   }
 
   disconnectedCallback() {
-    if (!this.emmet || !Build?.isBrowser) return;
+    if (!Build?.isBrowser || !this.editor?.dispose) return;
+    this.editor.dispose();
+    if (!this.emmet) return;
     this.emmet();
     this.emmet = null;
   }
