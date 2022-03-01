@@ -39,17 +39,31 @@
         display: block;
         overflow: auto;
         position: initial;
+        margin: 0;
+        padding: 0;
       }
       .component-wrapper {
         background: var(--ion-color-base);
       }
     </style>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
+    />
   </head>
 
   <body>
-    <!-- <fireenjin-docs-gallery></fireenjin-docs-gallery> -->
-    <fireenjin-code-editor></fireenjin-code-editor>
-    <fireenjin-code-editor></fireenjin-code-editor>
+    <fireenjin-docs-gallery></fireenjin-docs-gallery>
+    <!-- <fireenjin-code-editor></fireenjin-code-editor>
+    <fireenjin-code-editor></fireenjin-code-editor> -->
     <script src="/presets.js"></script>
   </body>
 </html>
