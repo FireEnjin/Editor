@@ -160,18 +160,15 @@ export class CodeEditor {
     if (!this.disableFocus) this.editor.focus();
     if (!this.disableEmmet) {
       if (this.language === "html") {
-        this.emmet = emmetHTML((window as any).monaco, ["html", "php"]);
+        this.emmet = emmetHTML(this.monaco, ["html", "php"]);
       } else if (this.language === "css") {
-        this.emmet = emmetCSS((window as any).monaco, ["css"]);
+        this.emmet = emmetCSS(this.monaco, ["css"]);
       } else if (
         ["javascript", "typescript", "ts", "tsx", "js", "jsx"].includes(
           this.language
         )
       ) {
-        this.emmet = emmetJSX((window as any).monaco, [
-          "javascript",
-          "typescript",
-        ]);
+        this.emmet = emmetJSX(this.monaco, ["javascript", "typescript"]);
       }
     }
   }
