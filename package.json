@@ -29,10 +29,10 @@
   },
   "dependencies": {
     "@editorjs/editorjs": "^2.23.2",
-    "@editorjs/embed": "^2.5.0",
+    "@editorjs/embed": "^2.5.1",
     "@editorjs/header": "^2.6.2",
     "@editorjs/image": "^2.6.2",
-    "@editorjs/list": "^1.6.2",
+    "@editorjs/list": "^1.7.0",
     "@editorjs/table": "^2.0.1",
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/facebook": "^5.36.0",
@@ -45,12 +45,12 @@
     "editorjs-paragraph-with-alignment": "^3.0.0",
     "editorjs-parser": "^1.5.3",
     "editorjs-style": "^3.0.2",
-    "emmet-monaco-es": "^5.0.2",
+    "emmet-monaco-es": "^5.1.0",
     "monaco-editor": "^0.32.1",
     "remark": "^14.0.2"
   },
   "devDependencies": {
-    "@fireenjin/cli": "^1.0.11",
+    "@fireenjin/cli": "^1.0.13",
     "@fireenjin/docs": "^1.0.13",
     "@types/jest": "^27.4.1",
     "ace-builds": "^1.4.14",
