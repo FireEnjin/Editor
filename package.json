@@ -50,8 +50,8 @@
     "remark": "^14.0.2"
   },
   "devDependencies": {
-    "@fireenjin/cli": "^1.0.14",
-    "@fireenjin/docs": "^1.0.15",
+    "@fireenjin/cli": "^1.0.20",
+    "@fireenjin/docs": "^1.0.17",
     "@types/jest": "^27.4.1",
     "ace-builds": "^1.4.14",
     "fs-extra": "^10.0.1",
