@@ -23,8 +23,8 @@ export default class DragDrop {
    */
   constructor({ configuration, blocks }) {
     this.api = blocks;
-    this.holder = configuration.holder;
-    this.readOnly = !!configuration.readOnly;
+    this.holder = configuration?.holder;
+    this.readOnly = !!configuration?.readOnly;
     this.startBlock = null;
     this.endBlock = null;
 
@@ -36,16 +36,15 @@ export default class DragDrop {
    * Sets the drag events listener.
    */
   setDragListener() {
-    if (!this.readOnly) {
-      const settingsButton = this.holder.querySelector(
-        ".ce-toolbar__settings-btn"
-      );
+    if (this.readOnly || !this.holder?.querySelector) return;
+    const settingsButton = this.holder.querySelector(
+      ".ce-toolbar__settings-btn"
+    );
 
-      settingsButton.setAttribute("draggable", "true");
-      settingsButton.addEventListener("dragstart", () => {
-        this.startBlock = this.api.getCurrentBlockIndex();
-      });
-    }
+    settingsButton.setAttribute("draggable", "true");
+    settingsButton.addEventListener("dragstart", () => {
+      this.startBlock = this.api.getCurrentBlockIndex();
+    });
   }
 
   /**

@@ -186,12 +186,16 @@ export default class Tasklist {
       ];
     }
 
-    setTimeout(() => {
-      this.progressBarEl = this.api.blocks
-        .getBlockByIndex(this.api.blocks.getCurrentBlockIndex())
-        .holder.querySelector("ion-progress-bar");
-      this.setProgress();
-    }, 200);
+    try {
+      setTimeout(() => {
+        this.progressBarEl = this.api.blocks
+          .getBlockByIndex(this.api.blocks.getCurrentBlockIndex())
+          .holder.querySelector("ion-progress-bar");
+        this.setProgress();
+      }, 200);
+    } catch (e) {
+      console.log("Error setting progress.");
+    }
 
     this.data.items.forEach((item) => {
       const newItem = this.createTasklistItem(item);

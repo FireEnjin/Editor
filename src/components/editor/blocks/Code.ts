@@ -28,12 +28,13 @@ export default class Code {
   async togglePreview() {
     try {
       this.data.preview = !this.data?.preview;
-      const holder: HTMLElement = this.block.holder;
+      const holder: HTMLElement = this.block?.holder;
       if (this.settingsEl?.querySelector(".cdx-settings-button-preview")) {
         this.settingsEl.querySelector(
           ".cdx-settings-button-preview"
         ).innerHTML = this.icons[this.data?.preview ? "eye-off" : "eye"];
       }
+      if (!holder?.classList) return;
       if (this.data?.preview) {
         this.codeEditorEl.getPosition();
         this.previewEl.innerHTML = (await this.codeEditorEl.getValue()) || "";
@@ -217,7 +218,8 @@ export default class Code {
     setTimeout(() => {
       this.block.stretched = true;
       if (this.data?.preview) {
-        const holder: HTMLElement = this.block.holder;
+        const holder: HTMLElement = this.block?.holder;
+        if (!holder?.classList) return;
         holder.classList.add("show-preview");
         if (this.previewEl?.focus) {
           this.previewEl.focus();
@@ -228,7 +230,7 @@ export default class Code {
           event.preventDefault();
           event.stopPropagation();
         };
-        this.block.holder.addEventListener(
+        this.block?.holder?.addEventListener?.(
           "paste",
           this.pasteWatcher.bind(this)
         );
@@ -239,7 +241,7 @@ export default class Code {
             this.togglePreview();
           }
         };
-        this.block.holder.addEventListener(
+        this.block?.holder?.addEventListener?.(
           "keydown",
           this.previewToggleKeyWatcher.bind(this)
         );
