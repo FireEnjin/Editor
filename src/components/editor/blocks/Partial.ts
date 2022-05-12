@@ -39,7 +39,6 @@ export default class Partial {
       );
     }
 
-    this.createModal();
     document.addEventListener("fireenjinModalClose", () => {
       if (!this.modalEl) return;
       this.modalEl.dismiss();
@@ -83,61 +82,13 @@ export default class Partial {
     return result;
   }
 
-  createModal() {
-    const partials = this.partials;
-    const blockId = this.blockId;
-    customElements.define(
-      `template-select-modal-${blockId}`,
-      class extends HTMLElement {
-        connectedCallback() {
-          this.innerHTML = `
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Select a Template</ion-title>
-        <ion-buttons slot="primary">
-          <ion-button onClick="document.dispatchEvent(new CustomEvent('fireenjinModalClose', {detail: {event}}));">
-            <ion-icon slot="icon-only" name="close"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-list>
-          ${partials
-            .map(
-              (
-                partial
-              ) => `<ion-item onClick='event.preventDefault();document.dispatchEvent(new CustomEvent("fireenjinEditorClick", {
-              detail: {
-                event: event,
-                template: {
-                  id: \`${partial.id}\`,
-                  name: \`${partial.name ? partial.name : partial.subject}\`,
-                  html: \`${partial.html}\`
-                },
-                blockId: \`${blockId}\` 
-              }
-            }));' detail="true" href="#">
-            <ion-label>
-              <h2>${partial.name ? partial.name : partial.subject}</h2>
-              <div style="pointer-events: none;">${partial.html}</div>
-            </ion-label>
-          </ion-item>`
-            )
-            .join("")}
-      </ion-list>
-    </ion-content>`;
-        }
-      }
-    );
-  }
-
   presentModal() {
     this.modalEl = document.createElement("ion-modal");
-    this.modalEl.component = `template-select-modal-${this.blockId}`;
-    this.modalEl.cssClass = "my-custom-class";
+    this.modalEl.component = `fireenjin-modal-partial-select`;
+    this.modalEl.cssClass = "fireenjin-modal-partial-select";
     this.modalEl.componentProps = {
-      partials: this.data?.partials ? this.data.partials : {},
+      partials: this.partials || [],
+      blockId: this.blockId,
     };
 
     document.body.appendChild(this.modalEl);

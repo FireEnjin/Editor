@@ -55,7 +55,7 @@ export class EnjinEditor implements ComponentInterface {
   /**
    *  A list of template partials to use or a function to run to get template partials
    */
-  @Prop() partials: any;
+  @Prop() partials: any[];
   /**
    *  Is the editor in read only mode
    */
@@ -195,7 +195,7 @@ export class EnjinEditor implements ComponentInterface {
           partial: {
             class: Partial,
             config: {
-              partials: this.partials ? this.partials : null,
+              partials: this.partials || null,
             },
           },
           editorJSStyle: EditorJSStyle,
