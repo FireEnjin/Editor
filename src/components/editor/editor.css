@@ -1,7 +1,6 @@
 fireenjin-editor {
   display: block;
   color: var(--ion-text-color);
-  position: relative;
 }
 
 fireenjin-editor editorjs-style {
