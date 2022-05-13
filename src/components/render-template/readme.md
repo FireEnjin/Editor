@@ -9,6 +9,7 @@
 | ----------------- | ------------------ | ----------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `allowFullscreen` | `allow-fullscreen` |             | `boolean`                                             | `false`                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `data`            | `data`             |             | `any`                                                 | `{}`                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `disableFrame`    | `disable-frame`    |             | `boolean`                                             | `false`                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `enableClicks`    | `enable-clicks`    |             | `boolean`                                             | `false`                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `helpers`         | --                 |             | `{ [helperName: string]: any; }`                      | `{     formatUSD: (amount) => {       const formatter = new Intl.NumberFormat("en-US", {         style: "currency",         currency: "USD",         minimumFractionDigits: 2,       });        return formatter.format(amount ? amount : 0);     },     logic: (context, rules, tempData) =>       jsonLogic.apply(JSON.parse(rules.replace('"@tempData"', tempData)), {         ...context,         tempData,       }),   }` |
 | `loading`         | `loading`          |             | `"eager" \| "lazy"`                                   | `"lazy"`                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -49,13 +50,13 @@ Type: `Promise<void>`
 
 
 
-### `getFrameEl() => Promise<HTMLIFrameElement>`
+### `getFrameEl() => Promise<any>`
 
 
 
 #### Returns
 
-Type: `Promise<HTMLIFrameElement>`
+Type: `Promise<any>`
 
 
 

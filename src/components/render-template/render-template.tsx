@@ -24,10 +24,11 @@ import * as jsonLogic from "json-logic-js";
 export class RenderTemplate implements ComponentInterface {
   templateSlot: any;
   dataSlot: any;
-  frameEl: HTMLIFrameElement;
+  frameEl: any;
 
   @Event() fireenjinFetch: EventEmitter<FireEnjinFetchEvent>;
 
+  @Prop() disableFrame = false;
   @Prop() resize = false;
   @Prop() zoom: number | string = 1;
   @Prop() allowFullscreen = false;
@@ -255,20 +256,34 @@ export class RenderTemplate implements ComponentInterface {
             pointerEvents: this.enableClicks ? "initial" : "none",
           }}
         >
-          <iframe
-            ref={(el) => (this.frameEl = el)}
-            style={{
-              display: "block",
-              transform: `scale(${this.zoom || 1})`,
-              transformOrigin: "0 0",
-              height: this.zoom ? `${percentPosition}%` : "100%",
-              width: this.zoom ? `${percentPosition}%` : "100%",
-            }}
-            allowFullScreen={this.allowFullscreen}
-            srcDoc={this.html}
-            frameBorder={0}
-            loading={this.loading}
-          />
+          {this.disableFrame ? (
+            <div
+              ref={(el) => (this.frameEl = el)}
+              style={{
+                display: "block",
+                transform: `scale(${this.zoom || 1})`,
+                transformOrigin: "0 0",
+                height: this.zoom ? `${percentPosition}%` : "100%",
+                width: this.zoom ? `${percentPosition}%` : "100%",
+              }}
+              innerHTML={this.html}
+            />
+          ) : (
+            <iframe
+              ref={(el) => (this.frameEl = el)}
+              style={{
+                display: "block",
+                transform: `scale(${this.zoom || 1})`,
+                transformOrigin: "0 0",
+                height: this.zoom ? `${percentPosition}%` : "100%",
+                width: this.zoom ? `${percentPosition}%` : "100%",
+              }}
+              allowFullScreen={this.allowFullscreen}
+              srcDoc={this.html}
+              frameBorder={0}
+              loading={this.loading}
+            />
+          )}
         </div>
         {this.allowFullscreen && (
           <ion-button
