@@ -42,7 +42,7 @@ Type: `Promise<void>`
 - ion-col
 - ion-item
 - ion-label
-- fireenjin-render-template
+- [fireenjin-render-template](render-template)
 
 ### Graph
 ```mermaid
