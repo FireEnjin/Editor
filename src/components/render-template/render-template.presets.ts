@@ -18,6 +18,7 @@ export default {
     },
     hooks: {
       onComponentDidLoad: ({ organismEl }) => {
+        organismEl.style.height = "100%";
         setTimeout(() => {
           organismEl.querySelector("fireenjin-render-template").template = {
             html: `
@@ -811,5 +812,17 @@ export default {
         }, 4000);
       },
     },
+  },
+  static: {
+    name: "Static",
+    innerHTML: () => `<fireenjin-render-template style="height: 100%">
+      <div slot="template">
+        Hello {{world}}!
+        <div>testing more {{wee}}</div>
+      </div>
+      <div slot="data">
+        {"world": "emmy"}
+      </div>
+    </fireenjin-render-template>`,
   },
 } as ComponentPresets;

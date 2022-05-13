@@ -22,6 +22,8 @@ import * as jsonLogic from "json-logic-js";
   shadow: true,
 })
 export class RenderTemplate implements ComponentInterface {
+  templateSlot: any;
+  dataSlot: any;
   frameEl: HTMLIFrameElement;
 
   @Event() fireenjinFetch: EventEmitter<FireEnjinFetchEvent>;
@@ -32,7 +34,7 @@ export class RenderTemplate implements ComponentInterface {
   @Prop() loading: "eager" | "lazy" = "lazy";
   @Prop() templateId: string;
   @Prop() name: string;
-  @Prop() data: any = {};
+  @Prop({ mutable: true }) data: any = {};
   @Prop() enableClicks = false;
   @Prop({ mutable: true }) template: any = {};
   @Prop({ mutable: true }) partials: {
@@ -67,6 +69,18 @@ export class RenderTemplate implements ComponentInterface {
     if (this.partials?.length) this.setPartials();
     if (this.templateId) this.getTemplate(this.templateId);
     if (this.template) this.backoff(10, this.renderTemplate.bind(this));
+  }
+
+  async componentDidLoad() {
+    if (!Build?.isBrowser || this.template?.html || this.templateId) return;
+    const templateHtml = this.templateSlot?.assignedNodes?.()?.[0]?.innerHTML;
+    const dataStr = this.dataSlot?.assignedNodes?.()?.[0]?.innerHTML;
+    try {
+      this.data = JSON.parse(dataStr);
+    } catch (e) {
+      console.log("Error parsing JSON");
+    }
+    this.renderTemplate(templateHtml);
   }
 
   async backoff(retries: number, fn: () => any, delay = 500) {
@@ -227,8 +241,8 @@ export class RenderTemplate implements ComponentInterface {
         }}
       >
         <div style={{ display: "none" }}>
-          <slot name="template" />
-          <slot name="data" />
+          <slot ref={(el) => (this.templateSlot = el)} name="template" />
+          <slot ref={(el) => (this.dataSlot = el)} name="data" />
         </div>
         <div
           class="render-wrapper"
