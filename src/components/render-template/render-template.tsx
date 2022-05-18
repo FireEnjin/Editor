@@ -103,6 +103,11 @@ export class RenderTemplate implements ComponentInterface {
     });
   }
 
+  getBlobURL(code, type) {
+    const blob = new Blob([code], { type });
+    return URL.createObjectURL(blob);
+  }
+
   getTemplate(id: string) {
     this.fireenjinFetch.emit({
       endpoint: "findTemplate",
@@ -239,6 +244,7 @@ export class RenderTemplate implements ComponentInterface {
           display: "block",
           resize: this.resize ? "both" : "initial",
           overflow: "auto",
+          height: "100%",
         }}
       >
         <div style={{ display: "none" }}>
@@ -279,7 +285,7 @@ export class RenderTemplate implements ComponentInterface {
                 width: this.zoom ? `${percentPosition}%` : "100%",
               }}
               allowFullScreen={this.allowFullscreen}
-              srcDoc={this.html}
+              src={this.getBlobURL(this.html, "text/html")}
               frameBorder={0}
               loading={this.loading}
             />
