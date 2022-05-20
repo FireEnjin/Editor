@@ -87,20 +87,15 @@ export class EnjinEditor implements ComponentInterface {
   }
 
   /**
-   * Save the editor and return the JSON output
-   */
-  @Method()
-  async save() {
-    return this.editorJS.save();
-  }
-
-  /**
    * Export the editor as a string of HTML
    */
   @Method()
-  async exportHTML({
-    parsers,
-    customParsers = {
+  async exportHTML(options?: {
+    parsers?: any;
+    customParsers?: any;
+  }): Promise<string> {
+    if (!this.editorJS?.save) return;
+    return new edjsParser(options?.parsers || null, {
       button: (data) => {
         const classes =
           data.align === "center"
@@ -137,18 +132,8 @@ export class EnjinEditor implements ComponentInterface {
         return html.join("");
       },
       code: (data) => data.html,
-    },
-  }: {
-    parsers?: any;
-    customParsers?: any;
-  }): Promise<string> {
-    if (!this.editorJS?.save) return;
-    return new edjsParser(parsers, {
-      partial: (data) => {
-        return `<div class="editor-partial">{{> ${data.templateId}}}</div>`;
-      },
-      ...customParsers,
-    }).parse(await this.save());
+      ...(options?.customParsers || {}),
+    }).parse(await this.editorJS.save());
   }
 
   async disconnectedCallback() {

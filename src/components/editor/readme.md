@@ -26,7 +26,7 @@
 
 ## Methods
 
-### `exportHTML() => Promise<string>`
+### `exportHTML(options?: { parsers?: any; customParsers?: any; }) => Promise<string>`
 
 Export the editor as a string of HTML
 
