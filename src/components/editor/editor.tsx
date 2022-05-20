@@ -113,9 +113,11 @@ export class EnjinEditor implements ComponentInterface {
             : "enjin-align-left";
         return `<ion-button style="text-transform: none;" shape="${
           data.shape ? data.shape : "square"
-        }" color="${
-          data.color ? data.color : "primary"
-        }" class="${classes}" href="${data.href ? data.href : "#"}">${
+        }" color="${data.color ? data.color : "primary"}" fill="${
+          data.fill ? data.fill : "solid"
+        }" ${
+          data?.expand ? `expand="${data.expand}"` : ""
+        } class="${classes}" href="${data.href ? data.href : "#"}">${
           data.text
         }</ion-button>`;
       },

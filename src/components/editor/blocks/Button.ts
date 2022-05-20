@@ -15,6 +15,7 @@ export default class Button {
     "light",
   ];
   expandOptions = ["block", "full", undefined];
+  fillOptions = ["clear", "default", "outline", "solid", undefined];
   settings = [
     {
       name: "shape",
@@ -82,7 +83,7 @@ export default class Button {
     },
     {
       name: "color",
-      innerHTML: `<svg width="20" height="20" xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Color Fill</title><path d='M416 480c-35.29 0-64-29.11-64-64.88 0-33.29 28.67-65.4 44.08-82.64 1.87-2.1 3.49-3.91 4.68-5.31a19.94 19.94 0 0130.55 0c1.13 1.31 2.63 3 4.36 4.93 15.5 17.3 44.33 49.51 44.33 83.05 0 35.74-28.71 64.85-64 64.85zM398.23 276.64L166.89 47.22a52.1 52.1 0 00-73.6 0l-4.51 4.51a53.2 53.2 0 00-15.89 37.33A51.66 51.66 0 0088.14 126l41.51 41.5L45 252a44.52 44.52 0 00-13 32 42.81 42.81 0 0013.5 30.84l131.24 126a44 44 0 0061.08-.18l124.11-120.28a15.6 15.6 0 018.23-4.29 69.21 69.21 0 0111.93-.86h.3a22.53 22.53 0 0015.84-38.59zM152.29 144.85l-41.53-41.52a20 20 0 010-28.34l5.16-5.15a20.07 20.07 0 0128.39 0L186 111.21z'/></svg>`,
+      innerHTML: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="ionicon" viewBox="0 0 512 512"><title>Color Palette</title><path d="M441 336.2l-.06-.05c-9.93-9.18-22.78-11.34-32.16-12.92l-.69-.12c-9.05-1.49-10.48-2.5-14.58-6.17-2.44-2.17-5.35-5.65-5.35-9.94s2.91-7.77 5.34-9.94l30.28-26.87c25.92-22.91 40.2-53.66 40.2-86.59s-14.25-63.68-40.2-86.6c-35.89-31.59-85-49-138.37-49C223.72 48 162 71.37 116 112.11c-43.87 38.77-68 90.71-68 146.24s24.16 107.47 68 146.23c21.75 19.24 47.49 34.18 76.52 44.42a266.17 266.17 0 0086.87 15h1.81c61 0 119.09-20.57 159.39-56.4 9.7-8.56 15.15-20.83 15.34-34.56.21-14.17-5.37-27.95-14.93-36.84zM112 208a32 32 0 1132 32 32 32 0 01-32-32zm40 135a32 32 0 1132-32 32 32 0 01-32 32zm40-199a32 32 0 1132 32 32 32 0 01-32-32zm64 271a48 48 0 1148-48 48 48 0 01-48 48zm72-239a32 32 0 1132-32 32 32 0 01-32 32z"/></svg>`,
       value: "primary",
       onClick: () => {
         try {
@@ -115,6 +116,22 @@ export default class Button {
         }
       },
     },
+    {
+      name: "fill",
+      innerHTML: `<svg width="20" height="20" xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><title>Color Fill</title><path d='M416 480c-35.29 0-64-29.11-64-64.88 0-33.29 28.67-65.4 44.08-82.64 1.87-2.1 3.49-3.91 4.68-5.31a19.94 19.94 0 0130.55 0c1.13 1.31 2.63 3 4.36 4.93 15.5 17.3 44.33 49.51 44.33 83.05 0 35.74-28.71 64.85-64 64.85zM398.23 276.64L166.89 47.22a52.1 52.1 0 00-73.6 0l-4.51 4.51a53.2 53.2 0 00-15.89 37.33A51.66 51.66 0 0088.14 126l41.51 41.5L45 252a44.52 44.52 0 00-13 32 42.81 42.81 0 0013.5 30.84l131.24 126a44 44 0 0061.08-.18l124.11-120.28a15.6 15.6 0 018.23-4.29 69.21 69.21 0 0111.93-.86h.3a22.53 22.53 0 0015.84-38.59zM152.29 144.85l-41.53-41.52a20 20 0 010-28.34l5.16-5.15a20.07 20.07 0 0128.39 0L186 111.21z'/></svg>`,
+      value: "solid",
+      onClick: () => {
+        try {
+          const buttonEl = this.api.blocks
+            .getBlockByIndex(this.api.blocks.getCurrentBlockIndex())
+            .holder.querySelector("ion-button");
+          const currentFill = buttonEl?.fill;
+          buttonEl.fill = this.nextArrayItem(this.fillOptions, currentFill);
+        } catch (err) {
+          console.log("Error setting button fill!");
+        }
+      },
+    },
   ];
   data: any;
   api: any;
@@ -133,6 +150,8 @@ export default class Button {
       href: "#",
       align: "left",
       color: "primary",
+      fill: "solid",
+      expand: undefined,
       ...data,
     };
     this.api = api;
@@ -163,6 +182,12 @@ export default class Button {
     if (this.data?.color) {
       buttonEl.color = this.data.color;
     }
+    if (this.data?.expand) {
+      buttonEl.expand = this.data.expand;
+    }
+    if (this.data?.fill) {
+      buttonEl.fill = this.data.fill;
+    }
     buttonEl.innerHTML = `<div contenteditable="true">${this.data?.text}</div>`;
     return buttonEl;
   }
@@ -191,6 +216,8 @@ export default class Button {
       align: this.data?.align ? this.data.align : "left",
       href: button.href ? button.href : "#",
       color: button.color ? button.color : "primary",
+      expand: button.expand ? button.expand : undefined,
+      fill: button.fill ? button.fill : "solid",
     };
   }
 }
