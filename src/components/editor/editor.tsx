@@ -175,6 +175,7 @@ export class EnjinEditor implements ComponentInterface {
           },
           button: {
             class: Button,
+            inlineToolbar: true,
           },
           image: {
             class: ImageTool,
