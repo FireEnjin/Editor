@@ -87,6 +87,14 @@ export class EnjinEditor implements ComponentInterface {
   }
 
   /**
+   * Save the editor and return the JSON output
+   */
+  @Method()
+  async exportJSON() {
+    return this.editorJS?.save?.() as any;
+  }
+
+  /**
    * Export the editor as a string of HTML
    */
   @Method()

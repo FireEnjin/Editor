@@ -36,6 +36,16 @@ Type: `Promise<string>`
 
 
 
+### `exportJSON() => Promise<any>`
+
+Save the editor and return the JSON output
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
 ### `getInstance() => Promise<any>`
 
 Get the Editor.js instance
