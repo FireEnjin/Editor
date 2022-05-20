@@ -126,6 +126,7 @@ export default class Button {
 
   render() {
     const buttonEl: any = document.createElement("ion-button");
+    buttonEl.style.textTransform = "none";
     if (this.data?.shape) {
       buttonEl.shape = this.data.shape;
     }

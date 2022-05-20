@@ -11,13 +11,13 @@ import {
   State,
   Build,
 } from "@stencil/core";
+import ChangeCase from "editorjs-change-case";
 import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
 import List from "@editorjs/list";
 import Embed from "@editorjs/embed";
 import Header from "@editorjs/header";
 import Paragraph from "editorjs-paragraph-with-alignment";
-import EditorJSStyle from "editorjs-style";
 import edjsParser from "editorjs-parser";
 import Table from "@editorjs/table";
 import Undo from "./blocks/Undo";
@@ -111,7 +111,7 @@ export class EnjinEditor implements ComponentInterface {
             : data.align === "right"
             ? "enjin-align-right"
             : "enjin-align-left";
-        return `<ion-button shape="${
+        return `<ion-button style="text-transform: none;" shape="${
           data.shape ? data.shape : "square"
         }" color="${
           data.color ? data.color : "primary"
@@ -211,11 +211,17 @@ export class EnjinEditor implements ComponentInterface {
               partials: this.partials || null,
             },
           },
-          editorJSStyle: EditorJSStyle,
           markdownParser: MDParser,
           markdownImporter: MDImporter,
           embed: {
             class: Embed,
+          },
+          changeCase: {
+            class: ChangeCase,
+            config: {
+              showLocaleOption: true, // enable locale case options
+              locale: "tr", // or ['tr', 'TR', 'tr-TR']
+            },
           },
         },
         ...this.tools,
