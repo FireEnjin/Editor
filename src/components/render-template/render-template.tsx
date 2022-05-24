@@ -1,5 +1,4 @@
 import { FireEnjinFetchEvent } from "@fireenjin/sdk";
-import Debounce from "debounce-decorator";
 import {
   Build,
   Component,
@@ -133,7 +132,6 @@ export class RenderTemplate implements ComponentInterface {
   }
 
   @Method()
-  @Debounce(1000)
   @Watch("partials")
   async setPartials(partials?: any[]) {
     try {
@@ -162,7 +160,6 @@ export class RenderTemplate implements ComponentInterface {
   }
 
   @Method()
-  @Debounce(1000)
   @Watch("helpers")
   async setHelpers(helpers?: { [helperName: string]: any }) {
     try {
