@@ -58,6 +58,7 @@ export class RenderTemplate implements ComponentInterface {
         tempData,
       }),
   };
+  @Prop() rawHtml: string;
 
   @State() html = "";
   @State() currentPartials: string[] = [];
@@ -184,9 +185,9 @@ export class RenderTemplate implements ComponentInterface {
 
   @Method()
   async renderTemplate(html?: string) {
-    this.html = Handlebars.compile(html || this.template?.html || "")(
-      this.data ? this.data : {}
-    );
+    this.html = Handlebars.compile(
+      html || this.rawHtml || this.template?.html || ""
+    )(this.data ? this.data : {});
   }
 
   @Listen("fireenjinSuccess", { target: "body" })
