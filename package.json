@@ -46,6 +46,7 @@
     "editorjs-change-case": "^0.0.3",
     "editorjs-paragraph-with-alignment": "^3.0.0",
     "editorjs-parser": "^1.5.3",
+    "editorjs-style": "^3.0.3",
     "emmet-monaco-es": "^5.1.0",
     "handlebars": "^4.7.7",
     "json-logic-js": "^2.0.2",

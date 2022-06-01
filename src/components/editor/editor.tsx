@@ -11,6 +11,7 @@ import {
   State,
   Build,
 } from "@stencil/core";
+import EditorJSStyle from "editorjs-style";
 import ChangeCase from "editorjs-change-case";
 import EditorJS from "@editorjs/editorjs";
 import ImageTool from "@editorjs/image";
@@ -215,6 +216,7 @@ export class EnjinEditor implements ComponentInterface {
           },
           markdownParser: MDParser,
           markdownImporter: MDImporter,
+          style: EditorJSStyle.StyleInlineTool,
           embed: {
             class: Embed,
           },
