@@ -68,8 +68,6 @@ export default class Partial {
       if (!this.modalEl) return;
       this.modalEl.dismiss();
     });
-
-    this.api.blocks.stretchBlock(this.api.blocks.getCurrentBlockIndex(), true);
   }
 
   makeid(length) {
