@@ -243,6 +243,13 @@ export class CodeEditor {
   }
 
   render() {
-    return <code ref={(el) => (this.codeEl = el)} />;
+    return (
+      <code
+        class={{
+          "auto-expand": this.autoExpand,
+        }}
+        ref={(el) => (this.codeEl = el)}
+      />
+    );
   }
 }
