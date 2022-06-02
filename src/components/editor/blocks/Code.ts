@@ -42,6 +42,7 @@ export default class Code {
   async togglePreview() {
     try {
       this.data.preview = !this.data?.preview;
+      this.api.save();
       setTimeout(() => this.codeEditorEl.resize(), 30);
       const holder: HTMLElement = this.block?.holder;
       if (this.settingsEl?.querySelector(".cdx-settings-button-preview")) {
@@ -181,7 +182,7 @@ export default class Code {
 
     this.data = {
       html: data.html || "",
-      preview: data.preview || false,
+      preview: data?.preview || false,
       expand: data?.expand || false,
     };
 
@@ -222,12 +223,12 @@ export default class Code {
     this.previewEl = document.createElement("div");
     this.previewEl.classList.add("html-preview");
     this.previewEl.contentEditable = "true";
-    this.previewEl.addEventListener("input", () => {
-      const html = this.previewEl?.innerHTML || "";
-      this.codeEditorEl.value = html;
-      this.data.html = html;
-      if (this.api?.save) this.api.save();
-    });
+    // this.previewEl.addEventListener("input", () => {
+    //   const html = this.previewEl?.innerHTML || "";
+    //   this.codeEditorEl.value = html;
+    //   this.data.html = html;
+    //   if (this.api?.save) this.api.save();
+    // });
     this.previewEl.innerHTML = this.data?.html ? this.data.html : "";
 
     wrapper.appendChild(this.previewEl);
