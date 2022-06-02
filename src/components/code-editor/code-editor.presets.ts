@@ -5,6 +5,7 @@ export default {
     name: "Default",
     props: {
       value: `<p>Test</p>`,
+      autoExpand: true,
     },
     hooks: {
       onComponentDidLoad: () => {

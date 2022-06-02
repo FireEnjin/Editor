@@ -4,8 +4,10 @@ import {
   Event,
   EventEmitter,
   h,
+  Listen,
   Method,
   Prop,
+  State,
   Watch,
 } from "@stencil/core";
 import loader, { Monaco } from "@monaco-editor/loader";
@@ -17,14 +19,18 @@ import { emmetHTML, emmetCSS, emmetJSX } from "emmet-monaco-es";
   styleUrl: "code-editor.css",
 })
 export class CodeEditor {
+  ignoreEvent = false;
   private monaco: Monaco;
   codeEl: HTMLElement;
   editor: editor.IStandaloneCodeEditor;
   emmet: any;
   lastPosition: any;
+  lastValue: any;
+  debounceResize;
 
   @Event() fireenjinCodeChange: EventEmitter;
 
+  @Prop() debounceTimer = 500;
   @Prop() name = "code";
   @Prop() monacoVsPath: string;
   @Prop({ mutable: true }) value: string;
@@ -35,6 +41,7 @@ export class CodeEditor {
     formatOnPaste: true,
     formatOnType: true,
   };
+  @Prop() autoExpand = false;
   @Prop() readOnly = false;
   @Prop() disableEmmet = false;
   @Prop() minimap: {
@@ -76,6 +83,30 @@ export class CodeEditor {
     enabled: false,
   };
 
+  @State() width: number;
+  @State() height: number;
+
+  @Listen("resize", { target: "window" })
+  onWindowResize() {
+    this.debounceResize();
+  }
+
+  debounce(func, wait, immediate = false) {
+    var timeout;
+    return function () {
+      var context = this,
+        args = arguments;
+      var later = function () {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  }
+
   async injectScript(src) {
     return new Promise((resolve, reject) => {
       const script = document.createElement("script");
@@ -92,6 +123,29 @@ export class CodeEditor {
   onValueChange(value, oldValue) {
     if (oldValue === value || !this.editor?.setValue) return;
     this.editor.setValue(value);
+  }
+
+  @Method()
+  async resize() {
+    if (this.ignoreEvent) return;
+    const lineHeight = 22;
+    const lineCount = this.editor.getModel()?.getLineCount() || 1;
+    this.height = Math.min(
+      Math.max(60, this.editor.getTopForLineNumber(lineCount + 1) + lineHeight),
+      (document?.body?.offsetHeight || 600) / 2
+    );
+    this.width = Math.min(
+      document?.body?.offsetWidth,
+      this.codeEl?.offsetWidth
+    );
+    this.codeEl.style.width = `${this.width}px`;
+    this.codeEl.style.height = `${this.height}px`;
+    try {
+      this.ignoreEvent = true;
+      this.editor.layout({ width: this.width, height: this.height });
+    } finally {
+      this.ignoreEvent = false;
+    }
   }
 
   @Method()
@@ -139,6 +193,10 @@ export class CodeEditor {
         },
       });
     }
+    this.debounceResize = this.debounce(
+      () => this.resize(),
+      this.debounceTimer
+    );
     this.monaco = await loader.init();
     this.editor = this.monaco.editor.create(this.codeEl, {
       value: this.value,
@@ -149,6 +207,7 @@ export class CodeEditor {
       ...this.options,
     });
     this.editor.onDidChangeModelContent((event) => {
+      this.lastValue = this.value;
       this.value = this.editor.getValue();
       this.fireenjinCodeChange.emit({
         event,
@@ -157,6 +216,8 @@ export class CodeEditor {
         value: this.editor.getValue(),
       });
     });
+    if (this.autoExpand)
+      this.editor.onDidContentSizeChange(this.debounceResize);
     if (!this.disableFocus) this.editor.focus();
     if (!this.disableEmmet) {
       if (this.language === "html") {

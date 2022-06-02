@@ -7,18 +7,20 @@
 
 ## Properties
 
-| Property       | Attribute        | Description | Type                                                                                                                                                                                               | Default                                                  |
-| -------------- | ---------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| `disableEmmet` | `disable-emmet`  |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
-| `disableFocus` | `disable-focus`  |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
-| `language`     | `language`       |             | `string`                                                                                                                                                                                           | `"html"`                                                 |
-| `minimap`      | --               |             | `{ enabled?: boolean; side?: "right" \| "left"; size?: "proportional" \| "fill" \| "fit"; showSlider?: "always" \| "mouseover"; renderCharacters?: boolean; maxColumn?: number; scale?: number; }` | `{     enabled: false,   }`                              |
-| `monacoVsPath` | `monaco-vs-path` |             | `string`                                                                                                                                                                                           | `undefined`                                              |
-| `name`         | `name`           |             | `string`                                                                                                                                                                                           | `"code"`                                                 |
-| `options`      | `options`        |             | `any`                                                                                                                                                                                              | `{     formatOnPaste: true,     formatOnType: true,   }` |
-| `readOnly`     | `read-only`      |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
-| `theme`        | `theme`          |             | `string`                                                                                                                                                                                           | `"vs-dark"`                                              |
-| `value`        | `value`          |             | `string`                                                                                                                                                                                           | `undefined`                                              |
+| Property        | Attribute        | Description | Type                                                                                                                                                                                               | Default                                                  |
+| --------------- | ---------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `autoExpand`    | `auto-expand`    |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
+| `debounceTimer` | `debounce-timer` |             | `number`                                                                                                                                                                                           | `500`                                                    |
+| `disableEmmet`  | `disable-emmet`  |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
+| `disableFocus`  | `disable-focus`  |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
+| `language`      | `language`       |             | `string`                                                                                                                                                                                           | `"html"`                                                 |
+| `minimap`       | --               |             | `{ enabled?: boolean; side?: "right" \| "left"; size?: "proportional" \| "fill" \| "fit"; showSlider?: "always" \| "mouseover"; renderCharacters?: boolean; maxColumn?: number; scale?: number; }` | `{     enabled: false,   }`                              |
+| `monacoVsPath`  | `monaco-vs-path` |             | `string`                                                                                                                                                                                           | `undefined`                                              |
+| `name`          | `name`           |             | `string`                                                                                                                                                                                           | `"code"`                                                 |
+| `options`       | `options`        |             | `any`                                                                                                                                                                                              | `{     formatOnPaste: true,     formatOnType: true,   }` |
+| `readOnly`      | `read-only`      |             | `boolean`                                                                                                                                                                                          | `false`                                                  |
+| `theme`         | `theme`          |             | `string`                                                                                                                                                                                           | `"vs-dark"`                                              |
+| `value`         | `value`          |             | `string`                                                                                                                                                                                           | `undefined`                                              |
 
 
 ## Events
@@ -57,6 +59,16 @@ Type: `Promise<any>`
 #### Returns
 
 Type: `Promise<string>`
+
+
+
+### `resize() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
 
 
 

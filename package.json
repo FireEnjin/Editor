@@ -51,7 +51,8 @@
     "handlebars": "^4.7.7",
     "json-logic-js": "^2.0.2",
     "monaco-editor": "^0.33.0",
-    "remark": "^14.0.2"
+    "remark": "^14.0.2",
+    "typescript-debounce-decorator": "^0.0.18"
   },
   "devDependencies": {
     "@fireenjin/cli": "^1.0.20",
