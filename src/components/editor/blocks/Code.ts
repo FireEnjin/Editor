@@ -23,6 +23,20 @@ export default class Code {
       value: false,
       onClick: () => this.togglePreview(),
     },
+    {
+      name: "Expand",
+      innerHTML: `<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg"><path d="M13.568 5.925H4.056l1.703 1.703a1.125 1.125 0 0 1-1.59 1.591L.962 6.014A1.069 1.069 0 0 1 .588 4.26L4.38.469a1.069 1.069 0 0 1 1.512 1.511L4.084 3.787h9.606l-1.85-1.85a1.069 1.069 0 1 1 1.512-1.51l3.792 3.791a1.069 1.069 0 0 1-.475 1.788L13.514 9.16a1.125 1.125 0 0 1-1.59-1.591l1.644-1.644z"></path></svg>`,
+      value: false,
+      onClick: () => {
+        this.data.expand = !this.data?.expand;
+        this.api.blocks.stretchBlock(
+          this.api.blocks.getCurrentBlockIndex(),
+          this.data?.expand
+        );
+        this.codeEditorEl.resize();
+        this.api.save();
+      },
+    },
   ];
 
   async togglePreview() {
@@ -168,6 +182,7 @@ export default class Code {
     this.data = {
       html: data.html || "",
       preview: data.preview || false,
+      expand: data?.expand || false,
     };
 
     this.codeEditorEl = null;
@@ -211,14 +226,12 @@ export default class Code {
       const html = this.previewEl?.innerHTML || "";
       this.codeEditorEl.value = html;
       this.data.html = html;
-      console.log(html);
       if (this.api?.save) this.api.save();
     });
     this.previewEl.innerHTML = this.data?.html ? this.data.html : "";
 
     wrapper.appendChild(this.previewEl);
     setTimeout(() => {
-      this.block.stretched = true;
       if (this.data?.preview) {
         const holder: HTMLElement = this.block?.holder;
         if (!holder?.classList) return;
@@ -263,7 +276,8 @@ export default class Code {
   save(_rawToolsWrapper) {
     return {
       html: this.data?.html || "",
-      preview: !!this.data.preview,
+      expand: !!this.data?.expand,
+      preview: !!this.data?.preview,
     };
   }
 
