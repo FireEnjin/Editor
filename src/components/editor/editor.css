@@ -93,7 +93,7 @@ fireenjin-editor .ce-inline-toolbar__actions input {
 fireenjin-editor textarea.cdx-input {
   background-color: transparent;
 }
-fireenjin-editor .editor-partial {
+fireenjin-editor .editor-component {
   min-height: 40px;
 }
 fireenjin-editor .ce-code-tool__textarea {

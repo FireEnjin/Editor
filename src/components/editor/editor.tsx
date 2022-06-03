@@ -123,7 +123,7 @@ export class EnjinEditor implements ComponentInterface {
         }</ion-button>`;
       },
       partial: (data) => {
-        return `<div class="editor-partial">{{> ${data.templateId}}}</div>`;
+        return `<div class="editor-component">{{> ${data.templateId}}}</div>`;
       },
       tasklist: (data) => {
         const color = data?.color ? data.color : "success";

@@ -66,9 +66,9 @@ export default class Component {
       this.partials = config.partials;
     } else if (config?.partials && typeof config.partials === "function") {
       this.partials = config.partials();
-    } else if (localStorage.getItem("fireenjin-editor-partials")) {
+    } else if (localStorage.getItem("fireenjin-editor-components")) {
       this.partials = JSON.parse(
-        localStorage.getItem("fireenjin-editor-partials")
+        localStorage.getItem("fireenjin-editor-components")
       );
     }
 
@@ -79,7 +79,7 @@ export default class Component {
 
     document.addEventListener("fireenjinEditorClick", (event: any) => {
       const partialWrapperEl = document.querySelector(
-        `.editor-partial#${this.blockId}`
+        `.editor-component#${this.blockId}`
       );
       if (
         !event?.detail?.template ||
@@ -115,8 +115,8 @@ export default class Component {
 
   presentModal() {
     this.modalEl = document.createElement("ion-modal");
-    this.modalEl.component = `fireenjin-modal-partial-select`;
-    this.modalEl.cssClass = "fireenjin-modal-partial-select";
+    this.modalEl.component = `fireenjin-modal-component-select`;
+    this.modalEl.cssClass = "fireenjin-modal-component-select";
     this.modalEl.componentProps = {
       partials: this.partials || [],
       blockId: this.blockId,
@@ -138,7 +138,7 @@ export default class Component {
     this.loaded = true;
     this.partialWrapperEl = document.createElement("div");
     this.partialWrapperEl.id = this.blockId;
-    this.partialWrapperEl.classList.add("editor-partial");
+    this.partialWrapperEl.classList.add("editor-component");
     this.partialWrapperEl.style.cssText = this.data?.styles;
     this.partialWrapperEl.innerHTML = this.selectedPartial?.html
       ? this.selectedPartial.html

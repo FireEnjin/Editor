@@ -1,9 +1,9 @@
 import { Component, h, Host, Method, Prop } from "@stencil/core";
 
 @Component({
-  tag: "fireenjin-modal-partial-select",
+  tag: "fireenjin-modal-component-select",
 })
-export class ModalPartialSelect {
+export class ModalComponentSelect {
   @Prop() partials: any[];
   @Prop() blockId: string;
 
