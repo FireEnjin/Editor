@@ -236,7 +236,8 @@ export class RenderTemplate implements ComponentInterface {
     const percentPosition =
       this.zoom && (1 / parseFloat(this.zoom as string)) * 100;
     return (
-      <Host
+      <div
+        class="template-wrapper"
         style={{
           position: "relative",
           display: "block",
@@ -314,7 +315,7 @@ export class RenderTemplate implements ComponentInterface {
             />
           </ion-button>
         )}
-      </Host>
+      </div>
     );
   }
 }
