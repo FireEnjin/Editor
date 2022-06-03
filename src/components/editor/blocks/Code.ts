@@ -34,7 +34,7 @@ export default class Code {
           this.data?.expand
         );
         this.codeEditorEl.resize();
-        this.api.save();
+        this.block.save();
       },
     },
   ];
@@ -42,7 +42,7 @@ export default class Code {
   async togglePreview() {
     try {
       this.data.preview = !this.data?.preview;
-      this.api.save();
+      this.block.save();
       setTimeout(() => this.codeEditorEl.resize(), 30);
       const holder: HTMLElement = this.block?.holder;
       if (this.settingsEl?.querySelector(".cdx-settings-button-preview")) {
@@ -216,7 +216,7 @@ export default class Code {
     this.codeEditorEl.autoExpand = true;
     this.codeEditorEl.addEventListener("fireenjinCodeChange", (event) => {
       if (event?.detail?.value) this.data.html = event.detail.value;
-      if (this.api?.save) this.api.save();
+      if (this.block?.save) this.block.save();
     });
     wrapper.appendChild(this.codeEditorEl);
 
@@ -227,7 +227,7 @@ export default class Code {
     //   const html = this.previewEl?.innerHTML || "";
     //   this.codeEditorEl.value = html;
     //   this.data.html = html;
-    //   if (this.api?.save) this.api.save();
+    //   if (this.block?.save) this.block.save();
     // });
     this.previewEl.innerHTML = this.data?.html ? this.data.html : "";
 

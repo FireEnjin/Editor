@@ -25,7 +25,7 @@ import Undo from "./blocks/Undo";
 import DragDrop from "./blocks/DragDrop";
 import { MDParser, MDImporter } from "./blocks/Markdown";
 import Button from "./blocks/Button";
-import Partial from "./blocks/Partial";
+import ComponentBlock from "./blocks/Component";
 import Tasklist from "./blocks/Tasklist";
 import Code from "./blocks/Code";
 import Input from "./blocks/Input";
@@ -180,6 +180,12 @@ export class EnjinEditor implements ComponentInterface {
             class: Button,
             inlineToolbar: true,
           },
+          component: {
+            class: ComponentBlock,
+            config: {
+              partials: this.partials || null,
+            },
+          },
           image: {
             class: ImageTool,
             config: {
@@ -208,12 +214,6 @@ export class EnjinEditor implements ComponentInterface {
             class: Table,
           },
           code: Code,
-          partial: {
-            class: Partial,
-            config: {
-              partials: this.partials || null,
-            },
-          },
           markdownParser: MDParser,
           markdownImporter: MDImporter,
           style: EditorJSStyle.StyleInlineTool,
