@@ -76,11 +76,14 @@ export class RenderTemplate implements ComponentInterface {
     if (!Build?.isBrowser || this.template?.html || this.templateId) return;
     const templateHtml = this.templateSlot?.assignedNodes?.()?.[0]?.innerHTML;
     const dataStr = this.dataSlot?.assignedNodes?.()?.[0]?.innerHTML;
-    try {
-      this.data = JSON.parse(dataStr);
-    } catch (e) {
-      console.log("Error parsing JSON");
+    if (dataStr) {
+      try {
+        this.data = JSON.parse(dataStr);
+      } catch (e) {
+        console.log("Error parsing JSON");
+      }
     }
+
     this.renderTemplate(templateHtml);
   }
 

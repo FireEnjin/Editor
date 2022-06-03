@@ -122,7 +122,7 @@ export class EnjinEditor implements ComponentInterface {
           data.text
         }</ion-button>`;
       },
-      partial: (data) => {
+      component: (data) => {
         return `<div class="editor-component">{{> ${data.templateId}}}</div>`;
       },
       tasklist: (data) => {

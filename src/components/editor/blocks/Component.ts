@@ -75,6 +75,7 @@ export default class Component {
     document.addEventListener("fireenjinModalClose", () => {
       if (!this.modalEl) return;
       this.modalEl.dismiss();
+      this.modalEl = null;
     });
 
     document.addEventListener("fireenjinEditorClick", (event: any) => {
@@ -114,6 +115,7 @@ export default class Component {
   }
 
   presentModal() {
+    if (this.modalEl) return;
     this.modalEl = document.createElement("ion-modal");
     this.modalEl.component = `fireenjin-modal-component-select`;
     this.modalEl.cssClass = "fireenjin-modal-component-select";
