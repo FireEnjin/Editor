@@ -141,9 +141,10 @@ export default class Component {
     this.partialWrapperEl = document.createElement("div");
     this.partialWrapperEl.id = this.blockId;
     this.partialWrapperEl.classList.add("editor-component");
-    this.partialWrapperEl.style.cssText = this.data?.styles;
     this.partialWrapperEl.innerHTML = this.selectedPartial?.html
-      ? this.selectedPartial.html
+      ? `<div class="component-wrapper" style="${this.data?.styles || ""}">${
+          this.selectedPartial.html
+        }</div>`
       : `<caption>Please select a template</caption>`;
 
     return this.partialWrapperEl;
