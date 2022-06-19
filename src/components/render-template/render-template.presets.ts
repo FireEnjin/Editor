@@ -732,8 +732,8 @@ export default {
                 >{{location.phone}}</a
               >
               <p>
-                <a href="mailto:info@thefloodteam.com" target="_blank"
-                  >info@thefloodteam.com</a
+                <a href="mailto:info@madnesslabs.net" target="_blank"
+                  >info@madnesslabs.net</a
                 >
               </p>
             </div>
