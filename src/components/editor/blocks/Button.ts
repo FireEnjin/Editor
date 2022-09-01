@@ -164,6 +164,21 @@ export default class Button {
         }
       },
     },
+    {
+      name: "style",
+      innerHTML: `<svg height="20" width="20" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Logo Css3</title><path d="M64 32l35 403.22L255.77 480 413 435.15 448 32zm290.68 334.9L256.07 395l-98.46-28.24-6.75-77.76h48.26l3.43 39.56 53.59 15.16.13.28 53.47-14.85 5.64-64.15H203l-4-50h120.65l4.35-51H140l-4-49h240.58z"/></svg>`,
+      value: false,
+      onClick: () => {
+        this.data.styles = prompt(
+          "Custom block CSS styles:",
+          this.data?.styles
+        );
+        const buttonEl = this.api.blocks
+          .getBlockByIndex(this.api.blocks.getCurrentBlockIndex())
+          .holder.querySelector("ion-button");
+        buttonEl.style.cssText = this.data?.styles;
+      },
+    },
   ];
 
   api: any;
@@ -196,7 +211,14 @@ export default class Button {
   }
 
   render() {
-    const buttonEl: any = document.createElement("ion-button");
+    const buttonEl: HTMLElement & {
+      fill?: string;
+      target?: string;
+      href?: string;
+      shape?: string;
+      color?: string;
+      expand?: string;
+    } = document.createElement("ion-button");
     buttonEl.style.textTransform = "none";
     if (this.data?.shape) {
       buttonEl.shape = this.data.shape;
@@ -223,6 +245,7 @@ export default class Button {
     if (this.data?.target) {
       buttonEl.target = this.data.target;
     }
+    if (this.data?.styles) buttonEl.style.cssText = this.data.styles;
     buttonEl.innerHTML = `<div contenteditable="true">${this.data?.text}</div>`;
     return buttonEl;
   }
@@ -264,6 +287,7 @@ export default class Button {
       expand: button.expand ? button.expand : undefined,
       fill: button.fill ? button.fill : "solid",
       target: button.target ? button.target : "_self",
+      styles: this.data?.styles || "",
     };
   }
 }
