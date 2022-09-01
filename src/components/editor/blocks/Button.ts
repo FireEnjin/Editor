@@ -1,4 +1,5 @@
 export default class Button {
+  data: any = {};
   leftAlignIcon = `<svg xmlns="http://www.w3.org/2000/svg" id="Layer" enable-background="new 0 0 64 64" height="20" viewBox="0 0 64 64" width="20"><path d="m54 8h-44c-1.104 0-2 .896-2 2s.896 2 2 2h44c1.104 0 2-.896 2-2s-.896-2-2-2z"></path><path d="m54 52h-44c-1.104 0-2 .896-2 2s.896 2 2 2h44c1.104 0 2-.896 2-2s-.896-2-2-2z"></path><path d="m10 23h28c1.104 0 2-.896 2-2s-.896-2-2-2h-28c-1.104 0-2 .896-2 2s.896 2 2 2z"></path><path d="m54 30h-44c-1.104 0-2 .896-2 2s.896 2 2 2h44c1.104 0 2-.896 2-2s-.896-2-2-2z"></path><path d="m10 45h28c1.104 0 2-.896 2-2s-.896-2-2-2h-28c-1.104 0-2 .896-2 2s.896 2 2 2z"></path></svg>`;
   centerAlignIcon = `<svg xmlns="http://www.w3.org/2000/svg" id="Layer" enable-background="new 0 0 64 64" height="20" viewBox="0 0 64 64" width="20"><path d="m54 8h-44c-1.104 0-2 .896-2 2s.896 2 2 2h44c1.104 0 2-.896 2-2s-.896-2-2-2z"></path><path d="m54 52h-44c-1.104 0-2 .896-2 2s.896 2 2 2h44c1.104 0 2-.896 2-2s-.896-2-2-2z"></path><path d="m46 23c1.104 0 2-.896 2-2s-.896-2-2-2h-28c-1.104 0-2 .896-2 2s.896 2 2 2z"></path><path d="m54 30h-44c-1.104 0-2 .896-2 2s.896 2 2 2h44c1.104 0 2-.896 2-2s-.896-2-2-2z"></path><path d="m46 45c1.104 0 2-.896 2-2s-.896-2-2-2h-28c-1.104 0-2 .896-2 2s.896 2 2 2z"></path></svg>`;
   rightAlignIcon = `<svg xmlns="http://www.w3.org/2000/svg" id="Layer" enable-background="new 0 0 64 64" height="20" viewBox="0 0 64 64" width="20"><path d="m54 8h-44c-1.104 0-2 .896-2 2s.896 2 2 2h44c1.104 0 2-.896 2-2s-.896-2-2-2z"></path><path d="m54 52h-44c-1.104 0-2 .896-2 2s.896 2 2 2h44c1.104 0 2-.896 2-2s-.896-2-2-2z"></path><path d="m54 19h-28c-1.104 0-2 .896-2 2s.896 2 2 2h28c1.104 0 2-.896 2-2s-.896-2-2-2z"></path><path d="m54 30h-44c-1.104 0-2 .896-2 2s.896 2 2 2h44c1.104 0 2-.896 2-2s-.896-2-2-2z"></path><path d="m54 41h-28c-1.104 0-2 .896-2 2s.896 2 2 2h28c1.104 0 2-.896 2-2s-.896-2-2-2z"></path></svg>`;
@@ -14,6 +15,7 @@ export default class Button {
     "medium",
     "light",
   ];
+  targetOptions = ["_self", "_blank", "_parent", "_top"];
   expandOptions = ["block", "full", undefined];
   fillOptions = ["clear", "default", "outline", "solid", undefined];
   settings = [
@@ -48,6 +50,9 @@ export default class Button {
           if (newHref) {
             buttonEl.href = newHref;
           }
+          buttonEl.title = `Opening (${buttonEl?.href || "#"}) in: ${(
+            buttonEl?.target || "_self"
+          ).replace("_", "")}`;
         } catch (err) {
           console.log("Error setting button link!");
         }
@@ -132,8 +137,35 @@ export default class Button {
         }
       },
     },
+    {
+      name: "target",
+      innerHTML: `<span id="open-in" style="position: relative;"><svg height="16" width="20" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Open</title><path d="M224 304a16 16 0 01-11.31-27.31l157.94-157.94A55.7 55.7 0 00344 112H104a56.06 56.06 0 00-56 56v240a56.06 56.06 0 0056 56h240a56.06 56.06 0 0056-56V168a55.7 55.7 0 00-6.75-26.63L235.31 299.31A15.92 15.92 0 01224 304z"/><path d="M448 48H336a16 16 0 000 32h73.37l-38.74 38.75a56.35 56.35 0 0122.62 22.62L432 102.63V176a16 16 0 0032 0V64a16 16 0 00-16-16z"/></svg><small style="display: block; position: absolute; bottom: -16px; font-size: 8px; min-width: 100%; left: 0; pointer-events: none; user-select: none;">${(
+        this.data?.target || "_self"
+      ).replace("_", "")}</small></span>`,
+      value: "solid",
+      onClick: () => {
+        try {
+          const buttonEl = this.api.blocks
+            .getBlockByIndex(this.api.blocks.getCurrentBlockIndex())
+            .holder.querySelector("ion-button");
+          const currentTarget = buttonEl?.target || "_self";
+          buttonEl.target = this.nextArrayItem(
+            this.targetOptions,
+            currentTarget
+          );
+          this.data.target = currentTarget;
+          const targetText = currentTarget.replace("_", "");
+          buttonEl.title = `Opening (${
+            buttonEl?.href || "#"
+          }) in: ${targetText}`;
+          document.querySelector("#open-in small").textContent = targetText;
+        } catch (err) {
+          console.log("Error setting button target!");
+        }
+      },
+    },
   ];
-  data: any;
+
   api: any;
 
   static get toolbox() {
@@ -188,6 +220,9 @@ export default class Button {
     if (this.data?.fill) {
       buttonEl.fill = this.data.fill;
     }
+    if (this.data?.target) {
+      buttonEl.target = this.data.target;
+    }
     buttonEl.innerHTML = `<div contenteditable="true">${this.data?.text}</div>`;
     return buttonEl;
   }
@@ -206,6 +241,16 @@ export default class Button {
       wrapper.appendChild(button);
     }
 
+    try {
+      setTimeout(() => {
+        document.querySelector("#open-in small").textContent = (
+          this.data?.target || "_self"
+        ).replace("_", "");
+      }, 1000);
+    } catch (e) {
+      console.log("Error updating button target setting", e);
+    }
+
     return wrapper;
   }
 
@@ -218,6 +263,7 @@ export default class Button {
       color: button.color ? button.color : "primary",
       expand: button.expand ? button.expand : undefined,
       fill: button.fill ? button.fill : "solid",
+      target: button.target ? button.target : "_self",
     };
   }
 }
