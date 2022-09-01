@@ -53,7 +53,7 @@ export class ModalComponentSelect {
                 <ion-col size="12" sizeMd="6">
                   <ion-item
                     onClick={(event) => this.selectPartial(partial, event)}
-                    detail="true"
+                    detail
                     href="#"
                   >
                     <ion-label>
