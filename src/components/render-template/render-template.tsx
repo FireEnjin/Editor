@@ -18,7 +18,6 @@ import * as jsonLogic from "json-logic-js";
 
 @Component({
   tag: "fireenjin-render-template",
-  shadow: true,
 })
 export class RenderTemplate implements ComponentInterface {
   templateSlot: any;
@@ -28,6 +27,7 @@ export class RenderTemplate implements ComponentInterface {
   @Event() fireenjinFetch: EventEmitter<FireEnjinFetchEvent>;
 
   @Prop() disableFrame = false;
+  @Prop() disablePosition = false;
   @Prop() resize = false;
   @Prop() zoom: number | string = 1;
   @Prop() allowFullscreen = false;
@@ -253,7 +253,7 @@ export class RenderTemplate implements ComponentInterface {
         <div
           class="render-wrapper"
           style={{
-            position: "absolute",
+            position: this.disablePosition ? "initial" : "absolute",
             top: "0",
             left: "0",
             right: "0",
