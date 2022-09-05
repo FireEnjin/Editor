@@ -96,6 +96,14 @@ export class EnjinEditor implements ComponentInterface {
   }
 
   /**
+   * Clear the editor
+   */
+  @Method()
+  async clear() {
+    return this.editorJS.clear();
+  }
+
+  /**
    * Export the editor as a string of HTML
    */
   @Method()

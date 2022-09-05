@@ -26,6 +26,16 @@
 
 ## Methods
 
+### `clear() => Promise<void>`
+
+Clear the editor
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `exportHTML(options?: { parsers?: any; customParsers?: any; }) => Promise<string>`
 
 Export the editor as a string of HTML
