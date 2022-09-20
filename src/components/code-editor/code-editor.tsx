@@ -245,6 +245,7 @@ export class CodeEditor {
   render() {
     return (
       <code
+        id={`editor-${this.name}`}
         class={{
           "auto-expand": this.autoExpand,
         }}
