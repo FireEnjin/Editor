@@ -43,6 +43,7 @@ export class CodeEditor {
   };
   @Prop() autoExpand = false;
   @Prop() readOnly = false;
+  @Prop() outputObject = false;
   @Prop() disableEmmet = false;
   @Prop() minimap: {
     /**
@@ -122,7 +123,9 @@ export class CodeEditor {
   @Watch("value")
   onValueChange(value, oldValue) {
     if (oldValue === value || !this.editor?.setValue) return;
-    this.editor.setValue(value);
+    this.editor.setValue(
+      typeof value === "string" ? value : JSON.stringify(value)
+    );
   }
 
   @Method()
@@ -213,7 +216,9 @@ export class CodeEditor {
         event,
         name: this.name,
         editor: this.editor,
-        value: this.editor.getValue(),
+        value: this.outputObject
+          ? JSON.parse(this.editor.getValue())
+          : this.editor.getValue(),
       });
     });
     if (this.autoExpand)
