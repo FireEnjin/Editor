@@ -45,6 +45,7 @@ export class CodeEditor {
   @Prop() readOnly = false;
   @Prop() outputObject = false;
   @Prop() disableEmmet = false;
+  @Prop() indentSpaces = 4;
   @Prop() minimap: {
     /**
      * Enable the rendering of the minimap.
@@ -124,7 +125,9 @@ export class CodeEditor {
   onValueChange(value, oldValue) {
     if (oldValue === value || !this.editor?.setValue) return;
     this.editor.setValue(
-      typeof value === "string" ? value : JSON.stringify(value)
+      typeof value === "string"
+        ? value
+        : JSON.stringify(value, null, this.indentSpaces || 4)
     );
   }
 
