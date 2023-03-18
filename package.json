@@ -17,7 +17,7 @@
     "serve": "npm-run-all --parallel dev presets:watch",
     "start": "npm-run-all --parallel dev presets:watch",
     "new:component": "stencil generate",
-    "build": "stencil build --docs --prod",
+    "build": "node --max_old_space_size=4096 ./node_modules/@stencil/core/bin/stencil build",
     "test": "stencil test --spec --e2e --coverage",
     "presets:build": "fireenjin presets",
     "presets:watch": "fireenjin presets watch"
