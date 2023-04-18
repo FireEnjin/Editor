@@ -11,7 +11,6 @@ export default {
       onComponentDidLoad: () => {
         setTimeout(() => {
           document.querySelector("fireenjin-code-editor").focus();
-          console.log("I Ran");
         }, 5000);
       },
     },

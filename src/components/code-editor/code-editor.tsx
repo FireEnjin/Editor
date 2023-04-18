@@ -122,9 +122,7 @@ export class CodeEditor {
 
   @Watch("value")
   onValueChange(value) {
-    const currentValue = this.outputObject
-      ? JSON.parse(this.editor.getValue())
-      : this.editor.getValue();
+    const currentValue = this.checkEditorValue();
     if (currentValue === value) return;
     this.editor.setValue(
       typeof value === "string"
@@ -191,6 +189,16 @@ export class CodeEditor {
     this.editor.updateOptions(options);
   }
 
+  checkEditorValue() {
+    const value = this.editor.getValue();
+    try {
+      return this.outputObject && value?.length ? JSON.parse(value) : value;
+    } catch (e) {
+      console.log("Error parsing as valid JSON", e);
+      return value;
+    }
+  }
+
   async componentDidLoad() {
     if (!Build?.isBrowser) return;
 
@@ -215,9 +223,7 @@ export class CodeEditor {
       ...this.options,
     });
     this.editor.onDidChangeModelContent((event) => {
-      this.value = this.outputObject
-        ? JSON.parse(this.editor.getValue())
-        : this.editor.getValue();
+      this.value = this.checkEditorValue();
       this.fireenjinCodeChange.emit({
         event,
         name: this.name,
