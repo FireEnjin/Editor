@@ -25,7 +25,6 @@ export class CodeEditor {
   editor: editor.IStandaloneCodeEditor;
   emmet: any;
   lastPosition: any;
-  lastValue: any;
   debounceResize;
 
   @Event() fireenjinCodeChange: EventEmitter;
@@ -122,8 +121,11 @@ export class CodeEditor {
   }
 
   @Watch("value")
-  onValueChange(value, oldValue) {
-    if (oldValue === value || !this.editor?.setValue) return;
+  onValueChange(value) {
+    const currentValue = this.outputObject
+      ? JSON.parse(this.editor.getValue())
+      : this.editor.getValue();
+    if (currentValue === value) return;
     this.editor.setValue(
       typeof value === "string"
         ? value
@@ -213,15 +215,14 @@ export class CodeEditor {
       ...this.options,
     });
     this.editor.onDidChangeModelContent((event) => {
-      this.lastValue = this.value;
-      this.value = this.editor.getValue();
+      this.value = this.outputObject
+        ? JSON.parse(this.editor.getValue())
+        : this.editor.getValue();
       this.fireenjinCodeChange.emit({
         event,
         name: this.name,
         editor: this.editor,
-        value: this.outputObject
-          ? JSON.parse(this.editor.getValue())
-          : this.editor.getValue(),
+        value: this.value,
       });
     });
     if (this.autoExpand)
