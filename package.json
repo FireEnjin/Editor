@@ -47,7 +47,7 @@
     "editorjs-paragraph-with-alignment": "^3.0.0",
     "editorjs-parser": "^1.5.3",
     "editorjs-style": "^3.0.3",
-    "emmet-monaco-es": "^5.2.2",
+    "emmet-monaco-es": "^5.3.0",
     "handlebars": "^4.7.7",
     "json-logic-js": "^2.0.2",
     "monaco-editor": "^0.37.1",
@@ -57,7 +57,7 @@
   "devDependencies": {
     "@fireenjin/cli": "^1.1.5",
     "@fireenjin/docs": "^1.0.19",
-    "@types/jest": "^29.5.0",
+    "@types/jest": "^29.5.1",
     "fs-extra": "^11.1.1",
     "husky": "^8.0.3",
     "jest": "^29.5.0",
