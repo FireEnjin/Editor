@@ -15,4 +15,11 @@ export default {
       },
     },
   },
+  editor: {
+    name: "JSON Editor",
+    props: {
+      value: "{}",
+      outputObject: true,
+    },
+  },
 } as ComponentPresets;

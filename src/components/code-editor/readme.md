@@ -27,12 +27,23 @@
 
 ## Events
 
-| Event                 | Description | Type               |
-| --------------------- | ----------- | ------------------ |
-| `fireenjinCodeChange` |             | `CustomEvent<any>` |
+| Event                 | Description | Type                               |
+| --------------------- | ----------- | ---------------------------------- |
+| `fireenjinCodeChange` |             | `CustomEvent<any>`                 |
+| `fireenjinError`      |             | `CustomEvent<FireEnjinErrorEvent>` |
 
 
 ## Methods
+
+### `checkEditorValue(event?: any, { onError, }?: { onError?: (data: { event?: any; name?: string; error: any; }) => Promise<void>; }) => Promise<any>`
+
+
+
+#### Returns
+
+Type: `Promise<any>`
+
+
 
 ### `format() => Promise<void>`
 

@@ -13,6 +13,7 @@ import {
 import loader, { Monaco } from "@monaco-editor/loader";
 import { editor } from "monaco-editor";
 import { emmetHTML, emmetCSS, emmetJSX } from "emmet-monaco-es";
+import { FireEnjinErrorEvent } from "@fireenjin/sdk";
 
 @Component({
   tag: "fireenjin-code-editor",
@@ -28,6 +29,7 @@ export class CodeEditor {
   debounceResize;
 
   @Event() fireenjinCodeChange: EventEmitter;
+  @Event() fireenjinError: EventEmitter<FireEnjinErrorEvent>;
 
   @Prop() debounceTimer = 500;
   @Prop() name = "code";
@@ -121,9 +123,13 @@ export class CodeEditor {
   }
 
   @Watch("value")
-  onValueChange(value) {
-    const currentValue = this.checkEditorValue();
-    if (currentValue === value) return;
+  async onValueChange(value: any) {
+    const currentValue = await this.checkEditorValue();
+    if (
+      (typeof value === "object" && this.deepEqual(currentValue, value)) ||
+      currentValue === value
+    )
+      return;
     this.editor.setValue(
       typeof value === "string"
         ? value
@@ -189,12 +195,63 @@ export class CodeEditor {
     this.editor.updateOptions(options);
   }
 
-  checkEditorValue() {
+  deepEqual(obj1: any, obj2: any): boolean {
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+
+    for (const key of keys1) {
+      if (!keys2.includes(key)) {
+        return false;
+      }
+
+      const val1 = obj1[key];
+      const val2 = obj2[key];
+
+      if (typeof val1 !== typeof val2) {
+        return false;
+      }
+
+      if (typeof val1 === "object" && val1 !== null) {
+        if (!this.deepEqual(val1, val2)) {
+          return false;
+        }
+      } else if (val1 !== val2) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  @Method()
+  async checkEditorValue(
+    event?: any,
+    {
+      onError,
+    }: {
+      onError?: (data: {
+        event?: any;
+        name?: string;
+        error: any;
+      }) => Promise<void>;
+    } = {}
+  ) {
     const value = this.editor.getValue();
     try {
       return this.outputObject && value?.length ? JSON.parse(value) : value;
-    } catch (e) {
-      console.log("Error parsing as valid JSON", e);
+    } catch (error) {
+      const errorData = {
+        event,
+        name: "parseError",
+        error,
+      };
+      this.fireenjinError.emit(errorData);
+      if (typeof onError === "function") await onError(errorData);
+      console.log("Error parsing as valid JSON", error);
       return value;
     }
   }
@@ -222,8 +279,8 @@ export class CodeEditor {
       automaticLayout: true,
       ...this.options,
     });
-    this.editor.onDidChangeModelContent((event) => {
-      this.value = this.checkEditorValue();
+    this.editor.onDidChangeModelContent(async (event) => {
+      this.value = await this.checkEditorValue(event);
       this.fireenjinCodeChange.emit({
         event,
         name: this.name,
