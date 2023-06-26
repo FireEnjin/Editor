@@ -1,118 +1,23 @@
-import {
-  ComponentInterface,
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Prop,
-  Method,
-  Host,
-  State,
-  Build,
-} from "@stencil/core";
-import EditorJSStyle from "editorjs-style";
-import ChangeCase from "editorjs-change-case";
-import EditorJS from "@editorjs/editorjs";
-import ImageTool from "@editorjs/image";
-import List from "@editorjs/list";
-import Embed from "@editorjs/embed";
-import Header from "@editorjs/header";
-import Paragraph from "editorjs-paragraph-with-alignment";
 import edjsParser from "editorjs-parser";
-import Table from "@editorjs/table";
-import Undo from "./blocks/Undo";
-import DragDrop from "./blocks/DragDrop";
-import { MDParser, MDImporter } from "./blocks/Markdown";
-import Button from "./blocks/Button";
-import ComponentBlock from "./blocks/Component";
-import Tasklist from "./blocks/Tasklist";
-import Code from "./blocks/Code";
-import Input from "./blocks/Input";
 
-@Component({
-  tag: "fireenjin-editor",
-  styleUrl: "editor.css",
-})
-export class EnjinEditor implements ComponentInterface {
-  @Element() editorEl: any;
-
-  /**
-   * The placholder text to show when the editor is empty
-   */
-  @Prop() placeholder = "Let's Write Something!";
-  /**
-   * The userId of the author
-   */
-  @Prop() userId: string;
-  /**
-   * The folder to put images uploaded via the editor in
-   */
-  @Prop() fileStoragePath: string;
-  /**
-   * Custom tools you want to pass to Editor.js
-   */
-  @Prop() tools: any = {};
-  /**
-   *  A list of template partials to use or a function to run to get template partials
-   */
-  @Prop() partials: any[];
-  /**
-   *  Is the editor in read only mode
-   */
-  @Prop() readOnly = false;
-  /**
-   *  Should the editor focus on load
-   */
-  @Prop() autofocus = true;
-  /**
-   * The callback to be run when a file is uploaded
-   */
-  @Prop() uploadCallback: (
-    event
-  ) => Promise<{ success: boolean; file: { url: string } }>;
-
-  @State() editorJS: EditorJS;
-
-  /**
-   * An event emitted on each change in the editor
-   */
-  @Event() fireenjinChange: EventEmitter;
-
-  /**
-   * Get the Editor.js instance
-   */
-  @Method()
-  async getInstance(): Promise<any> {
-    return this.editorJS;
-  }
-
-  /**
-   * Save the editor and return the JSON output
-   */
-  @Method()
-  async exportJSON() {
-    return this.editorJS?.save?.() as any;
-  }
-
-  /**
-   * Clear the editor
-   */
-  @Method()
-  async clear() {
-    return this.editorJS.clear();
-  }
-
-  /**
-   * Export the editor as a string of HTML
-   */
-  @Method()
-  async exportHTML(options?: {
-    parsers?: any;
+/**
+ * Editor.JS editor output to HTML
+ */
+export default async function editorToHtml(
+  editor: any,
+  {
+    parserConfig,
+    customParsers,
+    embedMarkup,
+  }: {
+    parserConfig?: any;
     customParsers?: any;
-  }): Promise<string> {
-    if (!this.editorJS?.save) return;
-    return new edjsParser(options?.parsers || null, {
+    embedMarkup?: any;
+  } = {}
+): Promise<string> {
+  const parser = new edjsParser(
+    parserConfig || null,
+    customParsers || {
       button: (data) => {
         const classes =
           data.align === "center"
@@ -120,13 +25,11 @@ export class EnjinEditor implements ComponentInterface {
             : data.align === "right"
             ? "enjin-align-right"
             : "enjin-align-left";
-        return `<ion-button style="text-transform: none;" shape="${
+        return `<ion-button shape="${
           data.shape ? data.shape : "square"
-        }" color="${data.color ? data.color : "primary"}" fill="${
-          data.fill ? data.fill : "solid"
-        }" ${
-          data?.expand ? `expand="${data.expand}"` : ""
-        } class="${classes}" href="${data.href ? data.href : "#"}">${
+        }" color="${
+          data.color ? data.color : "primary"
+        }" class="${classes}" href="${data.href ? data.href : "#"}">${
           data.text
         }</ion-button>`;
       },
@@ -151,97 +54,10 @@ export class EnjinEditor implements ComponentInterface {
         return html.join("");
       },
       code: (data) => data.html,
-      ...(options?.customParsers || {}),
-    }).parse(await this.editorJS.save());
-  }
+      FrameHolder: () => "{{#if @partial-block}} {{> @partial-block }} {{/if}}",
+    },
+    embedMarkup || null
+  );
 
-  async disconnectedCallback() {
-    if (!this.editorJS?.destroy) return;
-    this.editorJS.destroy();
-  }
-
-  async componentDidLoad() {
-    if (!Build?.isBrowser) return;
-    this.editorJS = new EditorJS({
-      onChange: () => {
-        this.fireenjinChange.emit({ instance: this.editorJS });
-      },
-      onReady: () => {
-        new DragDrop(this.editorJS as any);
-        new Undo({ editor: this.editorJS });
-      },
-      placeholder: this.placeholder,
-      holder: this.editorEl,
-      readOnly: this.readOnly,
-      autofocus: this.autofocus,
-      tools: {
-        ...{
-          paragraph: {
-            class: Paragraph,
-            inlineToolbar: true,
-          },
-          header: {
-            class: Header,
-            inlineToolbar: true,
-          },
-          button: {
-            class: Button,
-            inlineToolbar: true,
-          },
-          component: {
-            class: ComponentBlock,
-            config: {
-              partials: this.partials || null,
-            },
-          },
-          image: {
-            class: ImageTool,
-            config: {
-              uploader: {
-                uploadByFile: async (file) => {
-                  return await this.uploadCallback({ type: "file", file });
-                },
-                uploadByUrl: async (url) => {
-                  return await this.uploadCallback({ type: "url", url });
-                },
-              },
-            },
-          },
-          list: {
-            class: List,
-            inlineToolbar: true,
-          },
-          tasklist: {
-            class: Tasklist,
-            inlineToolbar: true,
-          },
-          input: {
-            class: Input,
-          },
-          table: {
-            class: Table,
-          },
-          code: Code,
-          markdownParser: MDParser,
-          markdownImporter: MDImporter,
-          style: EditorJSStyle.StyleInlineTool,
-          embed: {
-            class: Embed,
-          },
-          changeCase: {
-            class: ChangeCase,
-            config: {
-              showLocaleOption: true, // enable locale case options
-              locale: "tr", // or ['tr', 'TR', 'tr-TR']
-            },
-          },
-        },
-        ...this.tools,
-      },
-    });
-  }
-
-  render() {
-    return <Host />;
-  }
+  return parser.parse(editor);
 }
