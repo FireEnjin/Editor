@@ -20,6 +20,7 @@ import Embed from "@editorjs/embed";
 import Header from "@editorjs/header";
 import Paragraph from "editorjs-paragraph-with-alignment";
 import edjsParser from "editorjs-parser";
+import editorjsColumns from "@calumk/editorjs-columns";
 import Table from "@editorjs/table";
 import Undo from "./blocks/Undo";
 import DragDrop from "./blocks/DragDrop";
@@ -176,6 +177,63 @@ export class EnjinEditor implements ComponentInterface {
       autofocus: this.autofocus,
       tools: {
         ...{
+          columns: {
+            class: editorjsColumns,
+            EditorJsLibrary: EditorJS,
+            config: {
+              tools: {
+                paragraph: {
+                  class: Paragraph,
+                  inlineToolbar: true,
+                },
+                header: {
+                  class: Header,
+                  inlineToolbar: true,
+                },
+                button: {
+                  class: Button,
+                  inlineToolbar: true,
+                },
+                component: {
+                  class: ComponentBlock,
+                  config: {
+                    partials: this.partials || null,
+                  },
+                },
+                image: {
+                  class: ImageTool,
+                  config: {
+                    uploader: {
+                      uploadByFile: async (file) => {
+                        return await this.uploadCallback({
+                          type: "file",
+                          file,
+                        });
+                      },
+                      uploadByUrl: async (url) => {
+                        return await this.uploadCallback({ type: "url", url });
+                      },
+                    },
+                  },
+                },
+                list: {
+                  class: List,
+                  inlineToolbar: true,
+                },
+                tasklist: {
+                  class: Tasklist,
+                  inlineToolbar: true,
+                },
+                input: {
+                  class: Input,
+                },
+                table: {
+                  class: Table,
+                },
+                code: Code,
+              },
+            },
+          },
           paragraph: {
             class: Paragraph,
             inlineToolbar: true,
