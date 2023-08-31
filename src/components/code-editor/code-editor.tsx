@@ -28,6 +28,7 @@ export class CodeEditor {
   lastPosition: any;
   debounceResize;
 
+  @Event() fireenjinCodeBlur: EventEmitter;
   @Event() fireenjinCodeChange: EventEmitter;
   @Event() fireenjinError: EventEmitter<FireEnjinErrorEvent>;
 
@@ -278,6 +279,15 @@ export class CodeEditor {
       readOnly: this.readOnly,
       automaticLayout: true,
       ...this.options,
+    });
+    this.editor.onDidBlurEditorText(async (event) => {
+      this.value = await this.checkEditorValue(event);
+      this.fireenjinCodeBlur.emit({
+        event,
+        name: this.name,
+        editor: this.editor,
+        value: this.value,
+      });
     });
     this.editor.onDidChangeModelContent(async (event) => {
       this.value = await this.checkEditorValue(event);
