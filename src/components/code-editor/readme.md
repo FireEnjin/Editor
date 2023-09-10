@@ -29,6 +29,7 @@
 
 | Event                 | Description | Type                               |
 | --------------------- | ----------- | ---------------------------------- |
+| `fireenjinCodeBlur`   |             | `CustomEvent<any>`                 |
 | `fireenjinCodeChange` |             | `CustomEvent<any>`                 |
 | `fireenjinError`      |             | `CustomEvent<FireEnjinErrorEvent>` |
 
