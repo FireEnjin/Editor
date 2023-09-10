@@ -9,9 +9,6 @@
   "jsnext:main": "./dist/esm/index.mjs",
   "types": "./dist/types/components.d.ts",
   "collection": "./dist/collection/collection-manifest.json",
-  "engines": {
-    "node": "18"
-  },
   "scripts": {
     "copy:ace": "fireenjin copy node_modules/ace-builds/src-min-noconflict/ src/components/editor/ace-builds",
     "dev": " stencil build --docs --dev --watch --serve",
@@ -38,7 +35,7 @@
     "@editorjs/image": "^2.8.1",
     "@editorjs/list": "^1.8.0",
     "@editorjs/table": "^2.2.2",
-    "@fireenjin/components": "^1.9.6",
+    "@fireenjin/components": "^1.9.8",
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/facebook": "^5.36.0",
     "@ionic-native/geolocation": "^5.36.0",
