@@ -3,10 +3,6 @@ fireenjin-editor {
   color: var(--ion-text-color);
 }
 
-fireenjin-editor editorjs-style {
-  display: block;
-}
-
 fireenjin-editor .ce-toolbox__button--active,
 fireenjin-editor .ce-toolbox__button:hover,
 fireenjin-editor .ce-toolbar__plus--active,
@@ -27,7 +23,6 @@ fireenjin-editor .ce-block--selected .ce-block__content {
 
 fireenjin-editor .ce-toolbar {
   z-index: 9;
-  left: 0px;
 }
 
 fireenjin-editor .ce-toolbar__actions {
@@ -143,9 +138,5 @@ fireenjin-editor .show-preview .html-preview {
   fireenjin-editor .ce-toolbar__actions {
     border-radius: 4px;
     border: 1px solid var(--ion-color-light-shade, #ccc);
-  }
-
-  fireenjin-editor .codex-editor--toolbox-opened .ce-toolbar {
-    left: 0;
   }
 }
