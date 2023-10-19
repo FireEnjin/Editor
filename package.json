@@ -29,13 +29,13 @@
   },
   "dependencies": {
     "@calumk/editorjs-columns": "^0.3.1",
-    "@editorjs/editorjs": "^2.28.1",
+    "@editorjs/editorjs": "^2.28.2",
     "@editorjs/embed": "^2.5.3",
     "@editorjs/header": "^2.7.0",
-    "@editorjs/image": "^2.8.1",
+    "@editorjs/image": "^2.8.2",
     "@editorjs/list": "^1.8.0",
     "@editorjs/table": "^2.2.2",
-    "@fireenjin/components": "^1.11.3",
+    "@fireenjin/components": "^1.11.6",
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/facebook": "^5.36.0",
     "@ionic-native/geolocation": "^5.36.0",
@@ -56,9 +56,9 @@
     "typescript-debounce-decorator": "^0.0.18"
   },
   "devDependencies": {
-    "@fireenjin/cli": "^1.1.10",
+    "@fireenjin/cli": "^1.1.11",
     "@fireenjin/docs": "^1.0.19",
-    "@types/jest": "^29.5.5",
+    "@types/jest": "^29.5.6",
     "fs-extra": "^11.1.1",
     "husky": "^8.0.3",
     "jest": "^29.7.0",
