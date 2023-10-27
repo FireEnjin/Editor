@@ -36,7 +36,7 @@ export default class Button {
     },
     {
       name: "href",
-      innerHTML: `<svg class="icon" width="14px" height="10px"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#link"></use></svg>`,
+      innerHTML: `<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path d="M200.66 352H144a96 96 0 010-192h55.41M312.59 160H368a96 96 0 010 192h-56.66M169.07 256h175.86" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"/></svg>`,
       value: "#",
       onClick: () => {
         try {
@@ -45,7 +45,7 @@ export default class Button {
             .holder.querySelector("ion-button");
           const newHref = prompt(
             "Where do you want this button to link?",
-            buttonEl.href
+            buttonEl.href,
           );
           if (newHref) {
             buttonEl.href = newHref;
@@ -114,7 +114,7 @@ export default class Button {
           const currentExpand = buttonEl?.expand;
           buttonEl.expand = this.nextArrayItem(
             this.expandOptions,
-            currentExpand
+            currentExpand,
           );
         } catch (err) {
           console.log("Error setting button expand!");
@@ -150,13 +150,12 @@ export default class Button {
             .holder.querySelector("ion-button");
           buttonEl.target = this.nextArrayItem(
             this.targetOptions,
-            buttonEl?.target
+            buttonEl?.target,
           );
           this.data.target = buttonEl?.target;
           const targetText = buttonEl?.target.replace("_", "");
-          buttonEl.title = `Opening (${buttonEl?.href || "#"}) in: ${
-            this.data?.target
-          }`;
+          buttonEl.title = `Opening (${buttonEl?.href || "#"}) in: ${this.data
+            ?.target}`;
           document.querySelector("#open-in small").textContent = targetText;
         } catch (err) {
           console.log("Error setting button target!");
@@ -170,7 +169,7 @@ export default class Button {
       onClick: () => {
         this.data.styles = prompt(
           "Custom block CSS styles:",
-          this.data?.styles
+          this.data?.styles,
         );
         const buttonEl = this.api.blocks
           .getBlockByIndex(this.api.blocks.getCurrentBlockIndex())
@@ -268,8 +267,8 @@ export default class Button {
 
     try {
       setTimeout(() => {
-        document.querySelector("#open-in small").textContent =
-          (this.data?.target).replace("_", "");
+        document.querySelector("#open-in small").textContent = (this.data
+          ?.target).replace("_", "");
       }, 1000);
     } catch (e) {
       console.log("Error updating button target setting", e);

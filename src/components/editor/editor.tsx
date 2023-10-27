@@ -70,8 +70,9 @@ export class EnjinEditor implements ComponentInterface {
    * The callback to be run when a file is uploaded
    */
   @Prop() uploadCallback: (
-    event
+    event,
   ) => Promise<{ success: boolean; file: { url: string } }>;
+  @Prop() embedConfig: any;
 
   @State() editorJS: EditorJS;
 
@@ -142,12 +143,12 @@ export class EnjinEditor implements ComponentInterface {
           html.push(
             `<ion-item><ion-checkbox slot="start" color="${color}" ${
               item.checked ? `checked="true"` : ""
-            }></ion-checkbox><ion-label>${item.text}</ion-label></ion-item>`
+            }></ion-checkbox><ion-label>${item.text}</ion-label></ion-item>`,
           );
         }
         html.push(
           `<ion-progress-bar color="${color}" value="${progress}"></ion-progress-bar>`,
-          "</ion-list>"
+          "</ion-list>",
         );
         return html.join("");
       },
@@ -285,6 +286,7 @@ export class EnjinEditor implements ComponentInterface {
           style: EditorJSStyle.StyleInlineTool,
           embed: {
             class: Embed,
+            config: this.embedConfig,
           },
           changeCase: {
             class: ChangeCase,
