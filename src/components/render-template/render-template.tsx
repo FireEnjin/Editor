@@ -74,7 +74,8 @@ export class RenderTemplate implements ComponentInterface {
 
   async componentDidLoad() {
     if (!Build?.isBrowser || this.template?.html || this.templateId) return;
-    const templateHtml = this.templateSlot?.assignedNodes?.()?.[0]?.innerHTML;
+    const templateHtml =
+      this.rawHtml || this.templateSlot?.assignedNodes?.()?.[0]?.innerHTML;
     const dataStr = this.dataSlot?.assignedNodes?.()?.[0]?.innerHTML;
     if (dataStr) {
       try {
@@ -189,7 +190,7 @@ export class RenderTemplate implements ComponentInterface {
   @Method()
   async renderTemplate(html?: string) {
     this.html = Handlebars.compile(
-      html || this.rawHtml || this.template?.html || ""
+      html || this.rawHtml || this.template?.html || "",
     )(this.data ? this.data : {});
   }
 

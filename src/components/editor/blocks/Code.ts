@@ -31,7 +31,7 @@ export default class Code {
         this.data.expand = !this.data?.expand;
         this.api.blocks.stretchBlock(
           this.api.blocks.getCurrentBlockIndex(),
-          this.data?.expand
+          this.data?.expand,
         );
         this.codeEditorEl.resize();
         this.block.save();
@@ -47,13 +47,15 @@ export default class Code {
       const holder: HTMLElement = this.block?.holder;
       if (this.settingsEl?.querySelector(".cdx-settings-button-preview")) {
         this.settingsEl.querySelector(
-          ".cdx-settings-button-preview"
+          ".cdx-settings-button-preview",
         ).innerHTML = this.icons[this.data?.preview ? "eye-off" : "eye"];
       }
       if (!holder?.classList) return;
       if (this.data?.preview) {
         this.codeEditorEl.getPosition();
-        this.previewEl.innerHTML = (await this.codeEditorEl.getValue()) || "";
+        this.previewEl.renderTemplate(
+          (await this.codeEditorEl.getValue()) || "",
+        );
         holder.classList.add("show-preview");
         setTimeout(() => {
           if (this.previewEl?.focus) {
@@ -81,7 +83,7 @@ export default class Code {
 
     if (sel.rangeCount) {
       ["Start", "End"].forEach((pos) =>
-        sel.getRangeAt(0)["set" + pos](node, node.length)
+        sel.getRangeAt(0)["set" + pos](node, node.length),
       );
     }
   }
@@ -93,7 +95,7 @@ export default class Code {
       let button = document.createElement("div");
       button.classList.add(
         "cdx-settings-button",
-        `cdx-settings-button-${setting.name}`
+        `cdx-settings-button-${setting.name}`,
       );
       button.innerHTML =
         typeof setting?.innerHTML === "function"
@@ -220,25 +222,33 @@ export default class Code {
     });
     wrapper.appendChild(this.codeEditorEl);
 
-    this.previewEl = document.createElement("div");
+    this.previewEl = document.createElement("fireenjin-render-template");
+    this.previewEl.style.minHeight = "30px";
+    this.previewEl.style.height = "50vh";
     this.previewEl.classList.add("html-preview");
-    this.previewEl.contentEditable = "true";
+
+    // this.previewEl.contentEditable = "true";
     // this.previewEl.addEventListener("input", () => {
     //   const html = this.previewEl?.innerHTML || "";
     //   this.codeEditorEl.value = html;
     //   this.data.html = html;
     //   if (this.block?.save) this.block.save();
     // });
-    this.previewEl.innerHTML = this.data?.html ? this.data.html : "";
-
+    this.previewEl.renderTemplate(this.data?.html || "");
+    const hiddenPreviewInputEl = document.createElement("input");
+    hiddenPreviewInputEl.style.opacity = "0";
+    hiddenPreviewInputEl.style.position = "absolute";
+    hiddenPreviewInputEl.style.height = "1px";
+    hiddenPreviewInputEl.style.pointerEvents = "none";
+    wrapper.appendChild(hiddenPreviewInputEl);
     wrapper.appendChild(this.previewEl);
     setTimeout(() => {
       if (this.data?.preview) {
         const holder: HTMLElement = this.block?.holder;
         if (!holder?.classList) return;
         holder.classList.add("show-preview");
-        if (this.previewEl?.focus) {
-          this.previewEl.focus();
+        if (hiddenPreviewInputEl?.focus) {
+          hiddenPreviewInputEl.focus();
         }
       }
       if (!this.pasteWatcher) {
@@ -248,7 +258,7 @@ export default class Code {
         };
         this.block?.holder?.addEventListener?.(
           "paste",
-          this.pasteWatcher.bind(this)
+          this.pasteWatcher.bind(this),
         );
       }
       if (!this.previewToggleKeyWatcher) {
@@ -257,9 +267,9 @@ export default class Code {
             this.togglePreview();
           }
         };
-        this.block?.holder?.addEventListener?.(
+        document?.addEventListener?.(
           "keydown",
-          this.previewToggleKeyWatcher.bind(this)
+          this.previewToggleKeyWatcher.bind(this),
         );
       }
     }, renderingTime);

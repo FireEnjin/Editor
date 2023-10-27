@@ -128,10 +128,10 @@ fireenjin-editor .show-preview fireenjin-code-editor {
   display: none;
 }
 fireenjin-editor .html-preview {
-  display: none;
+  display: none !important;
 }
 fireenjin-editor .show-preview .html-preview {
-  display: block;
+  display: block !important;
 }
 
 @media (min-width: 651px) {
