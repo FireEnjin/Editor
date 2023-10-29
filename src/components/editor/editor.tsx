@@ -72,7 +72,27 @@ export class EnjinEditor implements ComponentInterface {
   @Prop() uploadCallback: (
     event,
   ) => Promise<{ success: boolean; file: { url: string } }>;
-  @Prop() embedConfig: any;
+  @Prop() embedConfig: any = {
+    services: {
+      youtube: true,
+      coub: true,
+      facebook: true,
+      twitter: true,
+      instagram: true,
+      twitch: true,
+      vimeo: true,
+      miro: true,
+      codepen: true,
+      gfycat: true,
+      imgur: true,
+      vine: true,
+      "yandex-music-track": true,
+      "yandex-music-album": true,
+      "yandex-music-playlist": true,
+      pinterest: true,
+      github: true,
+    },
+  };
 
   @State() editorJS: EditorJS;
 
