@@ -109,6 +109,41 @@ export class EnjinEditor implements ComponentInterface {
     return this.editorJS;
   }
 
+  @Method()
+  async getBlock(id: string) {
+    return this.editorJS.blocks.getById(id);
+  }
+
+  @Method()
+  async updateBlock(id: string, data: any) {
+    return this.editorJS.blocks.update(id, data);
+  }
+
+  @Method()
+  async getBlockByIndex(index: number) {
+    return this.editorJS.blocks.getBlockByIndex(index);
+  }
+
+  @Method()
+  async moveBlock(toIndex: number, fromIndex: number) {
+    return this.editorJS.blocks.move(toIndex, fromIndex);
+  }
+
+  @Method()
+  async clearBlocks() {
+    return this.editorJS.blocks.clear();
+  }
+
+  @Method()
+  async swapBlock(fromIndex: number, toIndex: number) {
+    return this.editorJS.blocks.swap(fromIndex, toIndex);
+  }
+
+  @Method()
+  async deleteBlock(id: number) {
+    return this.editorJS.blocks.delete(id);
+  }
+
   /**
    * Save the editor and return the JSON output
    */
