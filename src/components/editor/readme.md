@@ -37,6 +37,26 @@ Type: `Promise<void>`
 
 
 
+### `clearBlocks() => Promise<any>`
+
+
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
+### `deleteBlock(id: number) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `exportHTML(options?: { parsers?: any; customParsers?: any; }) => Promise<string>`
 
 Export the editor as a string of HTML
@@ -57,9 +77,49 @@ Type: `Promise<any>`
 
 
 
+### `getBlock(id: string) => Promise<any>`
+
+
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
+### `getBlockByIndex(index: number) => Promise<any>`
+
+
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
 ### `getInstance() => Promise<any>`
 
 Get the Editor.js instance
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
+### `moveBlock(toIndex: number, fromIndex: number) => Promise<any>`
+
+
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
+### `updateBlock(id: string, data: any) => Promise<any>`
+
+
 
 #### Returns
 

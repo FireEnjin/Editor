@@ -72,6 +72,7 @@ export class EnjinEditor implements ComponentInterface {
   @Prop() uploadCallback: (
     event,
   ) => Promise<{ success: boolean; file: { url: string } }>;
+
   @Prop() embedConfig: any = {
     services: {
       youtube: true,
@@ -110,38 +111,33 @@ export class EnjinEditor implements ComponentInterface {
   }
 
   @Method()
-  async getBlock(id: string) {
-    return this.editorJS.blocks.getById(id);
+  async getBlock(id: string): Promise<any> {
+    return this.editorJS?.blocks?.getById?.(id);
   }
 
   @Method()
-  async updateBlock(id: string, data: any) {
-    return this.editorJS.blocks.update(id, data);
+  async updateBlock(id: string, data: any): Promise<any> {
+    return this.editorJS?.blocks?.update?.(id, data);
   }
 
   @Method()
-  async getBlockByIndex(index: number) {
-    return this.editorJS.blocks.getBlockByIndex(index);
+  async getBlockByIndex(index: number): Promise<any> {
+    return this.editorJS?.blocks?.getBlockByIndex?.(index);
   }
 
   @Method()
-  async moveBlock(toIndex: number, fromIndex: number) {
-    return this.editorJS.blocks.move(toIndex, fromIndex);
+  async moveBlock(toIndex: number, fromIndex: number): Promise<any> {
+    return this.editorJS?.blocks?.move?.(toIndex, fromIndex);
   }
 
   @Method()
-  async clearBlocks() {
-    return this.editorJS.blocks.clear();
-  }
-
-  @Method()
-  async swapBlock(fromIndex: number, toIndex: number) {
-    return this.editorJS.blocks.swap(fromIndex, toIndex);
+  async clearBlocks(): Promise<any> {
+    return this.editorJS?.blocks?.clear?.();
   }
 
   @Method()
   async deleteBlock(id: number) {
-    return this.editorJS.blocks.delete(id);
+    return this.editorJS?.blocks?.delete?.(id);
   }
 
   /**
@@ -157,7 +153,7 @@ export class EnjinEditor implements ComponentInterface {
    */
   @Method()
   async clear() {
-    return this.editorJS.clear();
+    return this.editorJS?.clear?.();
   }
 
   /**
