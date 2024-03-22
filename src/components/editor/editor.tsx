@@ -10,6 +10,7 @@ import {
   Host,
   State,
   Build,
+  Watch,
 } from "@stencil/core";
 import EditorJSStyle from "editorjs-style";
 import ChangeCase from "editorjs-change-case";
@@ -36,7 +37,7 @@ import Input from "./blocks/Input";
   styleUrl: "editor.css",
 })
 export class EnjinEditor implements ComponentInterface {
-  @Element() editorEl: any;
+  @Element() editorEl: HTMLElement;
 
   /**
    * The placholder text to show when the editor is empty
@@ -72,6 +73,10 @@ export class EnjinEditor implements ComponentInterface {
   @Prop() uploadCallback: (
     event,
   ) => Promise<{ success: boolean; file: { url: string } }>;
+  /**
+   * The data to load into the editor
+   */
+  @Prop() data: any;
 
   @Prop() embedConfig: any = {
     services: {
@@ -171,8 +176,8 @@ export class EnjinEditor implements ComponentInterface {
           data.align === "center"
             ? "enjin-align-center"
             : data.align === "right"
-            ? "enjin-align-right"
-            : "enjin-align-left";
+              ? "enjin-align-right"
+              : "enjin-align-left";
         return `<ion-button style="text-transform: none;" shape="${
           data.shape ? data.shape : "square"
         }" color="${data.color ? data.color : "primary"}" fill="${
@@ -208,6 +213,20 @@ export class EnjinEditor implements ComponentInterface {
     }).parse(await this.editorJS.save());
   }
 
+  @Method()
+  async setData(data: any) {
+    if (!data) return;
+    this.editorJS?.blocks?.clear?.();
+    this.editorJS?.blocks?.render?.(
+      typeof data === "string" ? JSON.parse(data) : this.data,
+    );
+  }
+
+  @Watch("data")
+  onDataChange() {
+    this.setData(this.data);
+  }
+
   async disconnectedCallback() {
     if (!this.editorJS?.destroy) return;
     this.editorJS.destroy();
@@ -215,7 +234,9 @@ export class EnjinEditor implements ComponentInterface {
 
   async componentDidLoad() {
     if (!Build?.isBrowser) return;
+    const data = this.data || this.editorEl.getAttribute("data") || null;
     this.editorJS = new EditorJS({
+      data: typeof data === "string" ? JSON.parse(data) : data,
       onChange: () => {
         this.fireenjinChange.emit({ instance: this.editorJS });
       },

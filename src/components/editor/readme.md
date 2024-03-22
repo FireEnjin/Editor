@@ -8,6 +8,7 @@
 | Property          | Attribute           | Description                                                                      | Type                                                                     | Default                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ----------------- | ------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `autofocus`       | `autofocus`         | Should the editor focus on load                                                  | `boolean`                                                                | `true`                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `data`            | `data`              | The data to load into the editor                                                 | `any`                                                                    | `undefined`                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `embedConfig`     | `embed-config`      |                                                                                  | `any`                                                                    | `{     services: {       youtube: true,       coub: true,       facebook: true,       twitter: true,       instagram: true,       twitch: true,       vimeo: true,       miro: true,       codepen: true,       gfycat: true,       imgur: true,       vine: true,       "yandex-music-track": true,       "yandex-music-album": true,       "yandex-music-playlist": true,       pinterest: true,       github: true,     },   }` |
 | `fileStoragePath` | `file-storage-path` | The folder to put images uploaded via the editor in                              | `string`                                                                 | `undefined`                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `partials`        | --                  | A list of template partials to use or a function to run to get template partials | `any[]`                                                                  | `undefined`                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -114,6 +115,16 @@ Type: `Promise<any>`
 #### Returns
 
 Type: `Promise<any>`
+
+
+
+### `setData(data: any) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
 
 
 
