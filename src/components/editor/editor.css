@@ -23,6 +23,7 @@ fireenjin-editor .ce-block--selected .ce-block__content {
 
 fireenjin-editor .ce-toolbar {
   z-index: 9;
+  right: auto;
 }
 
 fireenjin-editor .ce-toolbar__actions {
