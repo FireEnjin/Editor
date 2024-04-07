@@ -374,6 +374,6 @@ export class EnjinEditor implements ComponentInterface {
   }
 
   render() {
-    return <Host />;
+    return <Host style={{ width: "90%", marginLeft: "10%" }} />;
   }
 }
