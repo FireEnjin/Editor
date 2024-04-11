@@ -26,6 +26,11 @@ fireenjin-editor .ce-toolbar {
   right: auto;
 }
 
+fireenjin-editor .ce-popover {
+  right: auto;
+  left: 0 !important;
+}
+
 fireenjin-editor .ce-toolbar__actions {
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 0;
