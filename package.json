@@ -25,12 +25,12 @@
   "dependencies": {
     "@calumk/editorjs-columns": "^0.3.2",
     "@editorjs/editorjs": "^2.29.1",
-    "@editorjs/embed": "^2.7.1",
+    "@editorjs/embed": "^2.7.4",
     "@editorjs/header": "^2.8.1",
     "@editorjs/image": "^2.9.0",
     "@editorjs/list": "^1.9.0",
     "@editorjs/table": "^2.3.0",
-    "@fireenjin/components": "^1.14.2",
+    "@fireenjin/components": "^1.14.4",
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/facebook": "^5.36.0",
     "@ionic-native/geolocation": "^5.36.0",
@@ -43,10 +43,10 @@
     "editorjs-paragraph-with-alignment": "^3.0.0",
     "editorjs-parser": "^1.5.3",
     "editorjs-style": "^3.0.3",
-    "emmet-monaco-es": "^5.3.2",
+    "emmet-monaco-es": "^5.4.0",
     "handlebars": "^4.7.8",
     "json-logic-js": "^2.0.2",
-    "monaco-editor": "^0.48.0",
+    "monaco-editor": "^0.50.0",
     "remark": "^14.0.3",
     "typescript-debounce-decorator": "^0.0.18"
   },
@@ -60,7 +60,7 @@
     "npm-run-all": "^4.1.5",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-typescript": "^1.0.1",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   },
   "jest": {
     "preset": "@stencil/core/testing"
