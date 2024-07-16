@@ -47,7 +47,7 @@
     "handlebars": "^4.7.8",
     "json-logic-js": "^2.0.5",
     "monaco-editor": "^0.50.0",
-    "remark": "^15.0.1",
+    "remark": "^14.0.3",
     "typescript-debounce-decorator": "^0.0.18"
   },
   "devDependencies": {
