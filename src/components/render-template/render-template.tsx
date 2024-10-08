@@ -193,7 +193,7 @@ export class RenderTemplate implements ComponentInterface {
 
   @Method()
   async renderTemplate(html?: string) {
-    if (!html) html = this.rawHtml || (this.template?.editor && editorToHtml(this.template.editor, {
+    if (!html) html = this.rawHtml || (this.template?.editor && await editorToHtml(this.template.editor, {
       customParsers: this.customParsers,
       embedMarkup: this.embedMarkup,
       parserConfig: this.parserConfig
