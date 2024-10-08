@@ -21,7 +21,6 @@ import Embed from "@editorjs/embed";
 import Header from "@editorjs/header";
 import Paragraph from "editorjs-paragraph-with-alignment";
 import edjsParser from "editorjs-parser";
-import editorjsColumns from "@calumk/editorjs-columns";
 import Table from "@editorjs/table";
 import Undo from "./blocks/Undo";
 import DragDrop from "./blocks/DragDrop";
@@ -178,15 +177,11 @@ export class EnjinEditor implements ComponentInterface {
             : data.align === "right"
               ? "enjin-align-right"
               : "enjin-align-left";
-        return `<ion-button style="text-transform: none;" shape="${
-          data.shape ? data.shape : "square"
-        }" color="${data.color ? data.color : "primary"}" fill="${
-          data.fill ? data.fill : "solid"
-        }" ${
-          data?.expand ? `expand="${data.expand}"` : ""
-        } class="${classes}" href="${data.href ? data.href : "#"}">${
-          data.text
-        }</ion-button>`;
+        return `<ion-button style="text-transform: none;" shape="${data.shape ? data.shape : "square"
+          }" color="${data.color ? data.color : "primary"}" fill="${data.fill ? data.fill : "solid"
+          }" ${data?.expand ? `expand="${data.expand}"` : ""
+          } class="${classes}" href="${data.href ? data.href : "#"}">${data.text
+          }</ion-button>`;
       },
       component: (data) => {
         return `<div class="editor-component">{{> ${data.templateId}}}</div>`;
@@ -197,8 +192,7 @@ export class EnjinEditor implements ComponentInterface {
         const html = ["<ion-list>"];
         for (const item of data?.items ? data.items : []) {
           html.push(
-            `<ion-item><ion-checkbox slot="start" color="${color}" ${
-              item.checked ? `checked="true"` : ""
+            `<ion-item><ion-checkbox slot="start" color="${color}" ${item.checked ? `checked="true"` : ""
             }></ion-checkbox><ion-label>${item.text}</ion-label></ion-item>`,
           );
         }
@@ -251,7 +245,6 @@ export class EnjinEditor implements ComponentInterface {
       tools: {
         ...{
           columns: {
-            class: editorjsColumns,
             EditorJsLibrary: EditorJS,
             config: {
               tools: {

@@ -15,6 +15,7 @@ import {
 } from "@stencil/core";
 import Handlebars from "handlebars";
 import * as jsonLogic from "json-logic-js";
+import editorToHtml from "../../utils/editorToHtml";
 
 @Component({
   tag: "fireenjin-render-template",
@@ -59,6 +60,9 @@ export class RenderTemplate implements ComponentInterface {
       }),
   };
   @Prop() rawHtml: string;
+  @Prop() parserConfig?: any;
+  @Prop() customParsers?: any;
+  @Prop() embedMarkup?: any;
 
   @State() html = "";
   @State() currentPartials: string[] = [];
@@ -189,8 +193,13 @@ export class RenderTemplate implements ComponentInterface {
 
   @Method()
   async renderTemplate(html?: string) {
+    if (!html) html = this.rawHtml || (this.template?.editor && editorToHtml(this.template.editor, {
+      customParsers: this.customParsers,
+      embedMarkup: this.embedMarkup,
+      parserConfig: this.parserConfig
+    })) || this.template?.html || "";
     this.html = Handlebars.compile(
-      html || this.rawHtml || this.template?.html || "",
+      html
     )(this.data ? this.data : {});
   }
 
