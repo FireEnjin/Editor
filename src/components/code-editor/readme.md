@@ -40,6 +40,13 @@
 
 
 
+#### Parameters
+
+| Name    | Type                                                                                  | Description |
+| ------- | ------------------------------------------------------------------------------------- | ----------- |
+| `event` | `any`                                                                                 |             |
+| `__1`   | `{ onError?: (data: { event?: any; name?: string; error: any; }) => Promise<void>; }` |             |
+
 #### Returns
 
 Type: `Promise<any>`
@@ -69,6 +76,12 @@ Type: `Promise<any>`
 ### `getValue(options: any) => Promise<string>`
 
 
+
+#### Parameters
+
+| Name      | Type  | Description |
+| --------- | ----- | ----------- |
+| `options` | `any` |             |
 
 #### Returns
 
@@ -100,6 +113,12 @@ Type: `Promise<boolean>`
 
 
 
+#### Parameters
+
+| Name      | Type  | Description |
+| --------- | ----- | ----------- |
+| `options` | `any` |             |
+
 #### Returns
 
 Type: `Promise<void>`
@@ -109,6 +128,12 @@ Type: `Promise<void>`
 ### `updateOptions(options: any) => Promise<void>`
 
 
+
+#### Parameters
+
+| Name      | Type  | Description |
+| --------- | ----- | ----------- |
+| `options` | `any` |             |
 
 #### Returns
 

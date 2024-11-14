@@ -17,6 +17,13 @@
 
 
 
+#### Parameters
+
+| Name      | Type  | Description |
+| --------- | ----- | ----------- |
+| `partial` | `any` |             |
+| `event`   | `any` |             |
+
 #### Returns
 
 Type: `Promise<void>`
