@@ -7,7 +7,6 @@ export const config: Config = {
   namespace,
   buildEs5: false,
   plugins: [],
-  globalStyle: "src/css/global.css",
   globalScript: "src/global.ts",
   rollupPlugins: {
     after: [nodePolyfills()],

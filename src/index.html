@@ -14,26 +14,19 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Flood Team Components" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
     <meta http-equiv="x-ua-compatible" content="IE=Edge" />
-    <script
-      type="module"
-      src="https://unpkg.com/@fireenjin/docs@latest/dist/fireenjin-docs/fireenjin-docs.esm.js"
-    ></script>
     <script type="module" src="/build/editor.esm.js"></script>
     <script nomodule src="/build/editor.js"></script>
-
-    <link href="/build/editor.css" rel="stylesheet" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
       href="/assets/icon/apple-touch-icon.png"
     />
     <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico" />
-    <link rel="manifest" href="/manifest.json" />
     <style>
       body {
         display: block;
@@ -61,7 +54,6 @@
   </head>
 
   <body>
-    <fireenjin-docs-gallery></fireenjin-docs-gallery>
     <!-- <fireenjin-code-editor
       style="height: 33%"
       name="one"
@@ -74,6 +66,7 @@
       style="height: 33%"
       name="three"
     ></fireenjin-code-editor> -->
+    <fireenjin-editor></fireenjin-editor>
     <!-- <fireenjin-render-template style="height: 100%">
       <div slot="template">
         Hello {{world}}!
@@ -81,6 +74,5 @@
       </div>
       <div slot="data">{"world": "emmy", "wee": "woo"}</div>
     </fireenjin-render-template> -->
-    <script src="/presets.js"></script>
   </body>
 </html>

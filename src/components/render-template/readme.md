@@ -39,12 +39,6 @@
 
 
 
-#### Parameters
-
-| Name    | Type                       | Description |
-| ------- | -------------------------- | ----------- |
-| `input` | `{ templateId?: string; }` |             |
-
 #### Returns
 
 Type: `Promise<void>`
@@ -75,12 +69,6 @@ Type: `Promise<any>`
 
 
 
-#### Parameters
-
-| Name   | Type     | Description |
-| ------ | -------- | ----------- |
-| `html` | `string` |             |
-
 #### Returns
 
 Type: `Promise<void>`
@@ -91,12 +79,6 @@ Type: `Promise<void>`
 
 
 
-#### Parameters
-
-| Name      | Type                             | Description |
-| --------- | -------------------------------- | ----------- |
-| `helpers` | `{ [helperName: string]: any; }` |             |
-
 #### Returns
 
 Type: `Promise<void>`
@@ -106,12 +88,6 @@ Type: `Promise<void>`
 ### `setPartials(partials?: any[]) => Promise<void>`
 
 
-
-#### Parameters
-
-| Name       | Type    | Description |
-| ---------- | ------- | ----------- |
-| `partials` | `any[]` |             |
 
 #### Returns
 

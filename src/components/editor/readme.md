@@ -52,12 +52,6 @@ Type: `Promise<any>`
 
 
 
-#### Parameters
-
-| Name | Type     | Description |
-| ---- | -------- | ----------- |
-| `id` | `number` |             |
-
 #### Returns
 
 Type: `Promise<void>`
@@ -67,12 +61,6 @@ Type: `Promise<void>`
 ### `exportHTML(options?: { parsers?: any; customParsers?: any; }) => Promise<string>`
 
 Export the editor as a string of HTML
-
-#### Parameters
-
-| Name      | Type                                      | Description |
-| --------- | ----------------------------------------- | ----------- |
-| `options` | `{ parsers?: any; customParsers?: any; }` |             |
 
 #### Returns
 
@@ -94,12 +82,6 @@ Type: `Promise<any>`
 
 
 
-#### Parameters
-
-| Name | Type     | Description |
-| ---- | -------- | ----------- |
-| `id` | `string` |             |
-
 #### Returns
 
 Type: `Promise<any>`
@@ -109,12 +91,6 @@ Type: `Promise<any>`
 ### `getBlockByIndex(index: number) => Promise<any>`
 
 
-
-#### Parameters
-
-| Name    | Type     | Description |
-| ------- | -------- | ----------- |
-| `index` | `number` |             |
 
 #### Returns
 
@@ -136,13 +112,6 @@ Type: `Promise<any>`
 
 
 
-#### Parameters
-
-| Name        | Type     | Description |
-| ----------- | -------- | ----------- |
-| `toIndex`   | `number` |             |
-| `fromIndex` | `number` |             |
-
 #### Returns
 
 Type: `Promise<any>`
@@ -153,12 +122,6 @@ Type: `Promise<any>`
 
 
 
-#### Parameters
-
-| Name   | Type  | Description |
-| ------ | ----- | ----------- |
-| `data` | `any` |             |
-
 #### Returns
 
 Type: `Promise<void>`
@@ -168,13 +131,6 @@ Type: `Promise<void>`
 ### `updateBlock(id: string, data: any) => Promise<any>`
 
 
-
-#### Parameters
-
-| Name   | Type     | Description |
-| ------ | -------- | ----------- |
-| `id`   | `string` |             |
-| `data` | `any`    |             |
 
 #### Returns
 
