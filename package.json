@@ -29,7 +29,7 @@
     "@editorjs/image": "^2.10.0",
     "@editorjs/list": "^2.0.0",
     "@editorjs/table": "^2.4.2",
-    "@fireenjin/components": "^1.16.2",
+    "@fireenjin/components": "^1.16.3",
     "@ionic-native/core": "^5.36.0",
     "@ionic-native/facebook": "^5.36.0",
     "@ionic-native/geolocation": "^5.36.0",
