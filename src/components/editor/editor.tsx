@@ -23,7 +23,6 @@ import Paragraph from "editorjs-paragraph-with-alignment";
 import edjsParser from "editorjs-parser";
 import Table from "@editorjs/table";
 import Undo from "./blocks/Undo";
-import DragDrop from "./blocks/DragDrop";
 import { MDParser, MDImporter } from "./blocks/Markdown";
 import Button from "./blocks/Button";
 import ComponentBlock from "./blocks/Component";
@@ -235,7 +234,6 @@ export class EnjinEditor implements ComponentInterface {
         this.fireenjinChange.emit({ instance: this.editorJS });
       },
       onReady: () => {
-        new DragDrop(this.editorJS as any);
         new Undo({ editor: this.editorJS });
       },
       placeholder: this.placeholder,
@@ -244,62 +242,6 @@ export class EnjinEditor implements ComponentInterface {
       autofocus: this.autofocus,
       tools: {
         ...{
-          columns: {
-            EditorJsLibrary: EditorJS,
-            config: {
-              tools: {
-                paragraph: {
-                  class: Paragraph,
-                  inlineToolbar: true,
-                },
-                header: {
-                  class: Header,
-                  inlineToolbar: true,
-                },
-                button: {
-                  class: Button,
-                  inlineToolbar: true,
-                },
-                component: {
-                  class: ComponentBlock,
-                  config: {
-                    partials: this.partials || null,
-                  },
-                },
-                image: {
-                  class: ImageTool,
-                  config: {
-                    uploader: {
-                      uploadByFile: async (file) => {
-                        return await this.uploadCallback({
-                          type: "file",
-                          file,
-                        });
-                      },
-                      uploadByUrl: async (url) => {
-                        return await this.uploadCallback({ type: "url", url });
-                      },
-                    },
-                  },
-                },
-                list: {
-                  class: List,
-                  inlineToolbar: true,
-                },
-                tasklist: {
-                  class: Tasklist,
-                  inlineToolbar: true,
-                },
-                input: {
-                  class: Input,
-                },
-                table: {
-                  class: Table,
-                },
-                code: Code,
-              },
-            },
-          },
           paragraph: {
             class: Paragraph,
             inlineToolbar: true,

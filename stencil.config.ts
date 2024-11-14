@@ -1,5 +1,5 @@
 import { Config } from "@stencil/core";
-import nodePolyfills from "rollup-plugin-node-polyfills";
+// import nodePolyfills from "rollup-plugin-node-polyfills";
 
 import { namespace } from "./package.json";
 
@@ -7,9 +7,8 @@ export const config: Config = {
   namespace,
   buildEs5: false,
   plugins: [],
-  globalScript: "src/global.ts",
   rollupPlugins: {
-    after: [nodePolyfills()],
+    // after: [nodePolyfills()],
   },
   outputTargets: [
     {

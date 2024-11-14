@@ -17,6 +17,6 @@
     "resolveJsonModule": true,
     "stripInternal": true
   },
-  "include": ["src", "types/jsx.d.ts", "./typings.d.ts", "./stencil.config.ts"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

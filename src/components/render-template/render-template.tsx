@@ -1,4 +1,3 @@
-import { FireEnjinFetchEvent } from "@fireenjin/sdk";
 import {
   Build,
   Component,
@@ -25,7 +24,7 @@ export class RenderTemplate implements ComponentInterface {
   dataSlot: any;
   frameEl: any;
 
-  @Event() fireenjinFetch: EventEmitter<FireEnjinFetchEvent>;
+  @Event() fireenjinFetch: EventEmitter;
 
   @Prop() disableFrame = false;
   @Prop() disablePosition = false;

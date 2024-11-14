@@ -28,8 +28,10 @@ export default class DragDrop {
     this.startBlock = null;
     this.endBlock = null;
 
-    this.setDragListener();
-    this.setDropListener();
+    setTimeout(() => {
+      this.setDragListener();
+      this.setDropListener();
+    }, 300);
   }
 
   /**

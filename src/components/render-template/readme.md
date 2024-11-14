@@ -28,9 +28,9 @@
 
 ## Events
 
-| Event            | Description | Type                               |
-| ---------------- | ----------- | ---------------------------------- |
-| `fireenjinFetch` |             | `CustomEvent<FireEnjinFetchEvent>` |
+| Event            | Description | Type               |
+| ---------------- | ----------- | ------------------ |
+| `fireenjinFetch` |             | `CustomEvent<any>` |
 
 
 ## Methods
@@ -112,17 +112,9 @@ Type: `Promise<void>`
 
  - [fireenjin-modal-component-select](..)
 
-### Depends on
-
-- ion-button
-- ion-icon
-
 ### Graph
 ```mermaid
 graph TD;
-  fireenjin-render-template --> ion-button
-  fireenjin-render-template --> ion-icon
-  ion-button --> ion-ripple-effect
   fireenjin-modal-component-select --> fireenjin-render-template
   style fireenjin-render-template fill:#f9f,stroke:#333,stroke-width:4px
 ```

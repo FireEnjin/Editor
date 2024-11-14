@@ -13,7 +13,6 @@ import {
 import loader, { Monaco } from "@monaco-editor/loader";
 import { editor } from "monaco-editor";
 import { emmetHTML, emmetCSS, emmetJSX } from "emmet-monaco-es";
-import { FireEnjinErrorEvent } from "@fireenjin/sdk";
 
 @Component({
   tag: "fireenjin-code-editor",
@@ -30,7 +29,7 @@ export class CodeEditor {
 
   @Event() fireenjinCodeBlur: EventEmitter;
   @Event() fireenjinCodeChange: EventEmitter;
-  @Event() fireenjinError: EventEmitter<FireEnjinErrorEvent>;
+  @Event() fireenjinError: EventEmitter;
 
   @Prop() debounceTimer = 500;
   @Prop() name = "code";
